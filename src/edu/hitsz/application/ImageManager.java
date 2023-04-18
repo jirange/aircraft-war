@@ -2,9 +2,14 @@ package edu.hitsz.application;
 
 
 import edu.hitsz.aircraft.HeroAircraft;
-import edu.hitsz.aircraft.MobEnemy;
+import edu.hitsz.aircraft.enemy.BossEnemy;
+import edu.hitsz.aircraft.enemy.MobEnemy;
+import edu.hitsz.aircraft.enemy.SuperEnemy;
 import edu.hitsz.bullet.EnemyBullet;
 import edu.hitsz.bullet.HeroBullet;
+import edu.hitsz.prop.BloodProp;
+import edu.hitsz.prop.BombProp;
+import edu.hitsz.prop.BulletProp;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -32,21 +37,59 @@ public class ImageManager {
     public static BufferedImage HERO_BULLET_IMAGE;
     public static BufferedImage ENEMY_BULLET_IMAGE;
     public static BufferedImage MOB_ENEMY_IMAGE;
+    public static BufferedImage SUPER_ENEMY_IMAGE;
+    public static BufferedImage BOSS_ENEMY_IMAGE;
+    public static BufferedImage BLOOD_PROP_IMAGE;
+    public static BufferedImage BOMB_PROP_IMAGE;
+    public static BufferedImage BULLET_PROP_IMAGE;
 
     static {
         try {
 
-            BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg.jpg"));
+            switch (Main.difficulty) {
+                case 1:
+                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg.jpg"));
+                    break;
+                case 2:
+                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg2.jpg"));
+                    break;
+                case 3:
+                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg3.jpg"));
+                    break;
+                /*case 0: break;  */
+                default:
+                    throw new IllegalStateException("Unexpected value: " + Main.difficulty);
+            }
+
 
             HERO_IMAGE = ImageIO.read(new FileInputStream("src/images/hero.png"));
             MOB_ENEMY_IMAGE = ImageIO.read(new FileInputStream("src/images/mob.png"));
+            //3/10
+            SUPER_ENEMY_IMAGE = ImageIO.read(new FileInputStream("src/images/elite.png"));
+            //3/24
+            BOSS_ENEMY_IMAGE = ImageIO.read(new FileInputStream("src/images/boss.png"));
             HERO_BULLET_IMAGE = ImageIO.read(new FileInputStream("src/images/bullet_hero.png"));
             ENEMY_BULLET_IMAGE = ImageIO.read(new FileInputStream("src/images/bullet_enemy.png"));
 
+            //道具*********************3/11
+            BLOOD_PROP_IMAGE = ImageIO.read(new FileInputStream("src/images/prop_blood.png"));
+            BOMB_PROP_IMAGE = ImageIO.read(new FileInputStream("src/images/prop_bomb.png"));
+            BULLET_PROP_IMAGE = ImageIO.read(new FileInputStream("src/images/prop_bullet.png"));
+
             CLASSNAME_IMAGE_MAP.put(HeroAircraft.class.getName(), HERO_IMAGE);
             CLASSNAME_IMAGE_MAP.put(MobEnemy.class.getName(), MOB_ENEMY_IMAGE);
+            //3/10
+            CLASSNAME_IMAGE_MAP.put(SuperEnemy.class.getName(), SUPER_ENEMY_IMAGE);
+            //3/24
+            CLASSNAME_IMAGE_MAP.put(BossEnemy.class.getName(), BOSS_ENEMY_IMAGE);
+
             CLASSNAME_IMAGE_MAP.put(HeroBullet.class.getName(), HERO_BULLET_IMAGE);
             CLASSNAME_IMAGE_MAP.put(EnemyBullet.class.getName(), ENEMY_BULLET_IMAGE);
+
+            //道具***********************************************************
+            CLASSNAME_IMAGE_MAP.put(BloodProp.class.getName(), BLOOD_PROP_IMAGE);
+            CLASSNAME_IMAGE_MAP.put(BombProp.class.getName(), BOMB_PROP_IMAGE);
+            CLASSNAME_IMAGE_MAP.put(BulletProp.class.getName(), BULLET_PROP_IMAGE);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,12 +97,12 @@ public class ImageManager {
         }
     }
 
-    public static BufferedImage get(String className){
+    public static BufferedImage get(String className) {
         return CLASSNAME_IMAGE_MAP.get(className);
     }
 
-    public static BufferedImage get(Object obj){
-        if (obj == null){
+    public static BufferedImage get(Object obj) {
+        if (obj == null) {
             return null;
         }
         return get(obj.getClass().getName());
