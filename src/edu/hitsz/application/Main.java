@@ -1,7 +1,6 @@
 package edu.hitsz.application;
 
 import edu.hitsz.thread.MusicThread;
-import ui.CardLayoutDemo;
 import ui.DifficultyChoice;
 import ui.RecordsTable;
 

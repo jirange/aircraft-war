@@ -1,0 +1,63 @@
+@startuml
+
+/'class Game {
+  + action(): void
+  - paintImageWithPositionRevised(Graphics, List<AbstractFlyingObject>): void
+  - paintScoreAndLife(Graphics): void
+  - bulletsMoveAction(): void
+  - propsMoveAction(): void
+  - aircraftsMoveAction(): void
+  - printRecords(): void
+  - postProcessAction(): void
+  - timeCountAndNewCycleJudge(): boolean
+  - creatBossEnemy(): void
+  + paint(Graphics): void
+  - crashCheckAction(): void
+  - shootAction(): void
+  + Game(): 
+}'/
+class PlayerRecord {
+  - playerName: String
+  - difficulty: int
+  - recordTime: Date
+  - ranking: int
+  - score: int
+  + getPlayerName(): String
+  + getDifficulty(): int
+  + toString(): String
+  + setDifficulty(int): void
+  + getScore(): int
+  + getRecordTime(): Date
+  + setScore(int): void
+  + setRanking(int): void
+  + setRecordTime(Date): void
+  + setPlayerName(String): void
+  + getRanking(): int
+  + PlayerRecord(String, int, Date): 
+  + PlayerRecord(int, String, int, Date): 
+  + PlayerRecord(int, int, String, int, Date): 
+  + PlayerRecord(): 
+}
+interface RecordDao {
+   allRecords: List<PlayerRecord>
+  + doDeleteByRanking(int): void
+  + printAll(): void
+  + doAdd(PlayerRecord): void
+  + doDeleteByName(String): void
+}
+class RecordDaoImpl {
+   allRecords: List<PlayerRecord>
+  + doDeleteByName(String): void
+  - sortByScore(): void
+  + readRecords(): void
+  + saveRecords(): void
+  + doAdd(PlayerRecord): void
+  + doDeleteByRanking(int): void
+  + printAll(): void
+  + RecordDaoImpl(): 
+}
+/'Game           -->  RecordDaoImpl
+Game           -->  PlayerRecord'/
+RecordDaoImpl  *-->  PlayerRecord
+RecordDaoImpl  --^  RecordDao
+@enduml

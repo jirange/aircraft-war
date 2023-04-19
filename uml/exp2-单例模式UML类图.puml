@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class HeroAircraft {
+'英雄机类
+    - shootNum:int
+    - power:int
+    - direction:int
+    - {static} heroAircraft:HeroAircraft
+    - HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + forward():void
+    + shoot():List<BaseBullet>
+    + {static} getInstance():HeroAircraft
+
+}
+HeroAircraft --> HeroAircraft
+Game --> HeroAircraft
+
+@enduml

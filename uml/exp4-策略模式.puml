@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+'策略模式
+
+abstract class AbstractAircraft
+'抽象飞行器类
+{
+	# maxHp:int
+    # hp:int
+    - shootStrategy:ShootStrategy
+
+    + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + decreaseHp(int decrease):void
+    + getHp():int
+    + setShootStrategy(ShootStrategy shootStrategy):void
+    + DoShootStrategy(int direction, int shootSpeed, int shootNum):List<BaseBullet>
+    + {abstract} shoot():List<BaseBullet>
+
+ }
+interface ShootStrategy
+{
+    + {abstract} doShoot(int locationX,int locationY,int speedX,int speedY,int direction,int shootSpeed,int shootNum): List<BaseBullet>
+}
+
+class ScatteringShoot
+{
+    + doShoot(int locationX,int locationY,int speedX,int speedY,int direction,int shootSpeed,int shootNum): List<BaseBullet>
+}
+
+class DirectShoot
+{
+    + doShoot(int locationX,int locationY,int speedX,int speedY,int direction,int shootSpeed,int shootNum): List<BaseBullet>
+}
+
+ShootStrategy <|.. DirectShoot
+ShootStrategy <|.. ScatteringShoot
+'实现关系
+
+AbstractAircraft o--> ShootStrategy
+
+@enduml

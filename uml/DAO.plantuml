@@ -1,0 +1,45 @@
+@startuml
+
+class PlayerRecord {
+  - playerName: String
+  - difficulty: int
+  - recordTime: Date
+  - ranking: int
+  - score: int
+  + getPlayerName(): String
+  + getDifficulty(): int
+  + toString(): String
+  + setDifficulty(int difficulty): void
+  + getScore(): int
+  + getRecordTime(): Date
+  + setScore(int score): void
+  + setRanking(int ranking): void
+  + setRecordTime(Date recordTime): void
+  + setPlayerName(String playerName): void
+  + getRanking(): int
+  + PlayerRecord(String playerName, int score, Date recordTime):
+  + PlayerRecord(): 
+}
+interface RecordDao {
+  + doDeleteByRanking(int ranking): void
+  + printAll(): void
+  + getAllRecords(): List<PlayerRecord>
+  + doAdd(PlayerRecord record): void
+  + doDeleteByName(String playerName): void
+}
+class RecordDaoImpl {
+  - playerRecords: List<PlayerRecord>
+  + doDeleteByName(String playerName): void
+  + getAllRecords(): List<PlayerRecord>
+  + doAdd(PlayerRecord record): void
+  + doDeleteByRanking(int ranking): void
+  + printAll(): void
+  + RecordDaoImpl():
+  - sortByScore(): void
+  - readRecords(): void
+  - saveRecords(): void
+}
+
+RecordDaoImpl  *-->  PlayerRecord
+RecordDao  <|.. RecordDaoImpl
+@enduml
