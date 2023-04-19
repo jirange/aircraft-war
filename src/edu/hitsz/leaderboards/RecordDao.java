@@ -6,10 +6,6 @@ import java.util.List;
  * @author leng
  */
 public interface RecordDao {
-    //新增数据的方法
-            //getAll去所有
-   //删除
-
     /**
      * 新增玩家数据记录
      * @param record :玩家记录

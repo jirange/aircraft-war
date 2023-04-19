@@ -28,9 +28,6 @@ public class RecordsTable {
     DefaultTableModel model = null;
 
     public RecordsTable() {
-
-        System.out.print("leaderboards:");
-
         headerLabel.setText("难度："+Main.getDifficultyStr());
 
         setModel();

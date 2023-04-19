@@ -57,12 +57,10 @@ public class RecordDaoImpl implements RecordDao {
         for (PlayerRecord playerRecord : playerRecords) {
             if (playerRecord.getPlayerName().equals(playerName)) {
                 playerRecords.remove(playerRecord);
-                System.out.println("成功删除" + playerName);
                 saveRecords();
                 return;
             }
         }
-        System.out.println("没找到" + playerName);
     }
 
     @Override
