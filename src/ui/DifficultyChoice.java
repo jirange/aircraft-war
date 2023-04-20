@@ -1,10 +1,8 @@
 package ui;
 
 import edu.hitsz.application.Main;
-import edu.hitsz.thread.MusicThread;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -19,7 +17,6 @@ public class DifficultyChoice {
     private JButton difficultButton;
     private JComboBox checkAudio;
     private JPanel panel;
-
     private JFrame frame;
 
     public boolean isMusicSelected() {
@@ -48,12 +45,10 @@ public class DifficultyChoice {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                //if (e.getSource()==simpleButton){
                 //todo 点击简单模式后，转到简单模式
                 System.out.println("difficulty:EASY");
                 Main.difficulty = 1;
                 Main.start();
-
             }
         });
         normalButton.addMouseListener(new MouseAdapter() {
@@ -73,12 +68,9 @@ public class DifficultyChoice {
                 Main.start();
             }
         });
-        checkAudio.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(checkAudio.getSelectedItem());
-                isMusicSelected ="开".equals(checkAudio.getSelectedItem());
-            }
+        checkAudio.addActionListener(e -> {
+            System.out.println(checkAudio.getSelectedItem());
+            isMusicSelected ="开".equals(checkAudio.getSelectedItem());
         });
     }
 }
