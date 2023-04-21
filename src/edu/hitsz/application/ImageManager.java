@@ -51,10 +51,10 @@ public class ImageManager {
                     BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg.jpg"));
                     break;
                 case 2:
-                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg2.jpg"));
+                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg3.jpg"));
                     break;
                 case 3:
-                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg3.jpg"));
+                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg5.jpg"));
                     break;
 
                 default:

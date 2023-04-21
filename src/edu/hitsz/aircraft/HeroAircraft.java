@@ -73,4 +73,11 @@ public class HeroAircraft extends AbstractAircraft {
         return heroAircraft;
     }
 
+    /**
+     * 炸弹爆炸时 英雄机可获得坠毁的敌机分数
+     */
+    @Override
+    public void update() {
+        //todo 英雄机可获得坠毁的敌机分数
+    }
 }

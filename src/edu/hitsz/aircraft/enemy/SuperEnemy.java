@@ -85,4 +85,12 @@ public class SuperEnemy extends AbstractEnemyAircraft {
     public int getCrashScore() {
         return crashScore;
     }
+
+    /**
+     *  炸弹爆炸 精英敌机全部消失
+     */
+    @Override
+    public void update() {
+        this.vanish();
+    }
 }

@@ -108,4 +108,12 @@ public class BossEnemy extends AbstractEnemyAircraft {
         //todo 停止播放boss-bgm
         bossBgmThread.setToEnd(true);
     }
+
+    /**
+     * 炸弹爆炸 boss敌机减少一定的血量
+     */
+    @Override
+    public void update() {
+        this.decreaseHp(60);
+    }
 }

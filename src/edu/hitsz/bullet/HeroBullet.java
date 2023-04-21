@@ -24,4 +24,12 @@ public class HeroBullet extends BaseBullet {
     public void setPower(int power) {
         this.power = power;
     }
+
+    /**
+     * 炸弹爆炸时 英雄机子弹无动作
+     */
+    @Override
+    public void update() {
+        return;
+    }
 }

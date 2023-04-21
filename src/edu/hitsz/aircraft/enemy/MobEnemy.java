@@ -45,4 +45,12 @@ public class MobEnemy extends AbstractEnemyAircraft {
     public int getCrashScore() {
         return crashScore;
     }
+
+    /**
+     * 炸弹爆炸时 普通敌机 全部消失
+     */
+    @Override
+    public void update() {
+        this.vanish();
+    }
 }

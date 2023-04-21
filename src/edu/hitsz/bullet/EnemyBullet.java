@@ -25,4 +25,11 @@ public class EnemyBullet extends BaseBullet {
         this.power = power;
     }
 
+    /**
+     * 炸弹爆炸时 敌机子弹全部消失
+     */
+    @Override
+    public void update() {
+        this.vanish();
+    }
 }

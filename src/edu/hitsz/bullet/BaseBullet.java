@@ -9,7 +9,7 @@ import edu.hitsz.basic.AbstractFlyingObject;
  *
  * @author hitsz
  */
-public class BaseBullet extends AbstractFlyingObject {
+public abstract class BaseBullet extends AbstractFlyingObject {
 
 
 
@@ -49,4 +49,5 @@ public class BaseBullet extends AbstractFlyingObject {
     public int getPower() {
         return power;
     }
+
 }

@@ -101,4 +101,12 @@ public abstract class BaseProp extends AbstractFlyingObject {
         }
         return prop;
     }
+
+    /**
+     *
+     */
+    @Override
+    public void update() {
+        return;
+    }
 }

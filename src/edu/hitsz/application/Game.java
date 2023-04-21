@@ -11,7 +11,9 @@ import edu.hitsz.basic.AbstractFlyingObject;
 import edu.hitsz.bullet.BaseBullet;
 import edu.hitsz.leaderboards.PlayerRecord;
 import edu.hitsz.leaderboards.RecordDaoImpl;
+import edu.hitsz.observer.Subscriber;
 import edu.hitsz.prop.BaseProp;
+import edu.hitsz.prop.BombProp;
 import edu.hitsz.strategy.shoot.DirectShoot;
 import edu.hitsz.strategy.shoot.ScatteringShoot;
 import edu.hitsz.thread.MusicThread;
@@ -20,6 +22,7 @@ import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -67,6 +70,8 @@ public class Game extends JPanel {
      */
     private int enemyMaxNumber = 5;
 
+
+
     /**
      * 当前得分
      */
@@ -99,6 +104,7 @@ public class Game extends JPanel {
 
     public Game() {
         heroAircraft = HeroAircraft.getHeroAircraft();
+
 
         //在游戏的开始 设置为直射弹道
         heroAircraft.setShootStrategy(new DirectShoot());
@@ -165,6 +171,7 @@ public class Game extends JPanel {
                 shootAction();
             }
 
+
             // 子弹移动
             bulletsMoveAction();
 
@@ -199,7 +206,7 @@ public class Game extends JPanel {
                     musicThread.setToEnd(true);
                 }
 
-                if (bossEnemy != null ) {
+                if (bossEnemy != null) {
                     bossEnemy.vanish();
                 }
 
@@ -211,7 +218,7 @@ public class Game extends JPanel {
                 RecordDaoImpl recordDao = new RecordDaoImpl();
                 Date date = new Date();
                 PlayerRecord userRecord = new PlayerRecord(Main.difficulty, score, date);
-                System.out.println("玩家得分："+userRecord.toString());
+                System.out.println("玩家得分：" + userRecord.toString());
                 recordDao.addAfterEnd(userRecord);
 
             }
@@ -270,6 +277,7 @@ public class Game extends JPanel {
         // 英雄射击
         heroBullets.addAll(heroAircraft.shoot());
     }
+
 
     private void bulletsMoveAction() {
         for (BaseBullet bullet : heroBullets) {
@@ -373,6 +381,17 @@ public class Game extends JPanel {
                 continue;
             }
             if (heroAircraft.crash(prop)) {
+                //todo 将英雄机加入炸弹观察者清单
+                if (prop instanceof BombProp) {
+                    ArrayList<Subscriber> subscribers = new ArrayList<>();
+                    subscribers.addAll(enemyBullets);
+                    subscribers.addAll(abstractEnemyAircrafts);
+                    subscribers.add(heroAircraft);
+                    ((BombProp) prop).setSubscribers(subscribers);
+                    for (AbstractEnemyAircraft enemy : abstractEnemyAircrafts) {
+                        score+=enemy.getCrashScore();
+                    }
+                }
                 // 英雄碰到道具
                 // 道具生效
                 //todo 道具生效音效
@@ -384,7 +403,10 @@ public class Game extends JPanel {
             }
         }
 
+
+
     }
+
 
     /**
      * 后处理：
