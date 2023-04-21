@@ -10,5 +10,5 @@ public interface EnemyFactory {
      * 创造敌机对象
      * @return AbstractEnemyAircraft
      */
-    public abstract AbstractEnemyAircraft createEnemy();
+    public abstract AbstractEnemyAircraft createEnemy(int speed,int hp);
 }

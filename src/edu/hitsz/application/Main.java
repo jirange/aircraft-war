@@ -4,8 +4,10 @@ import edu.hitsz.thread.MusicThread;
 import ui.DifficultyChoice;
 import ui.RecordsTable;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileInputStream;
 import java.util.Date;
 
 /**
@@ -52,11 +54,27 @@ public class Main {
 
 
     private static void getMain() {
-            Game game = new Game();
-            cardPanel.add(game);
+        Game game;
+
+        switch (Main.difficulty) {
+            case 1:
+                game = new EasyGame();
+                break;
+            case 2:
+                game = new NormalGame();
+                break;
+            case 3:
+                game = new DifficultGame();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + Main.difficulty);
+        }
+
+        cardPanel.add(game);
             cardLayout.next(cardPanel);
             game.action();
         }
+
 
 
 

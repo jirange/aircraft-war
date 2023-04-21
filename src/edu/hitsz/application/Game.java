@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author hitsz
  */
-public class Game extends JPanel {
+public abstract class Game extends JPanel {
 
     private int backGroundTop = 0;
 
@@ -43,13 +43,18 @@ public class Game extends JPanel {
      * Scheduled 线程池，用于任务调度
      */
     private final ScheduledExecutorService executorService;
+
+    public int getScoreToBoss() {
+        return scoreToBoss;
+    }
+
     /**
      * scoreToBoss 生成BOSS敌机的阈值
      */
     private int scoreToBoss = 100;
 
     /**
-     * 时间间隔(ms)，控制刷新频率
+     * 时间间隔(ms)，控制刷新频率su
      */
     private int timeInterval = 40;
 
@@ -71,6 +76,13 @@ public class Game extends JPanel {
     private int enemyMaxNumber = 5;
 
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     /**
      * 当前得分
@@ -151,22 +163,12 @@ public class Game extends JPanel {
         Runnable task = () -> {
 
             time += timeInterval;
+//            System.out.println(time);
 
             // 周期性执行（控制频率）
             if (timeCountAndNewCycleJudge()) {
                 // 新敌机产生
-                if (abstractEnemyAircrafts.size() < enemyMaxNumber) {
-                    EnemyFactory factory;
-                    if (Math.random() <= superEnemyPro) {
-                        factory = new SuperEnemyFactory();
-                    } else {
-                        factory = new MobEnemyFactory();
-                        //3/18
-                    }
-                    AbstractEnemyAircraft enemy = factory.createEnemy();
-                    abstractEnemyAircrafts.add(enemy);
-
-                }
+                createEnemyAircraftByCycle();
                 // 飞机射出子弹
                 shootAction();
             }
@@ -233,37 +235,66 @@ public class Game extends JPanel {
 
     }
 
+    public abstract void createEnemyAircraftByCycle();
+
+    public void creatHelp(int enemyMaxNumber,double superEnemyPro,int hpAdd,int speedAdd) {
+        int superEnemySpeed=10;
+        int mobEnemySpeed=10;
+        int superEnemyHp=60;
+        int mobEnemyHp=30;
+        if (abstractEnemyAircrafts.size() < enemyMaxNumber) {
+            EnemyFactory factory;
+            AbstractEnemyAircraft enemy;
+
+/*            superEnemySpeed+=speedAdd;
+            mobEnemySpeed+=speedAdd;
+            superEnemyHp+=hpAdd;
+            mobEnemyHp+=hpAdd;*/
+
+            if (Math.random() <= superEnemyPro) {
+                factory = new SuperEnemyFactory();
+                enemy = factory.createEnemy(10+speedAdd,60+hpAdd);
+                System.out.println(enemy.getSpeedY());
+                System.out.println(enemy.getHp());
+            } else {
+                factory = new MobEnemyFactory();
+                enemy = factory.createEnemy(10+speedAdd,30+hpAdd);
+
+                //3/18
+            }
+            abstractEnemyAircrafts.add(enemy);
+
+        }
+    }
+
 
     //***********************
     //      Action 各部分
     //***********************
 
-    private boolean timeCountAndNewCycleJudge() {
-        cycleTime += timeInterval;
-        if (cycleTime >= cycleDuration && cycleTime - timeInterval < cycleTime) {
-            // 跨越到新的周期
-            cycleTime %= cycleDuration;
-            return true;
-        } else {
-            return false;
-        }
-    }
+    public abstract boolean timeCountAndNewCycleJudge();
 
     /**
      * 监听 创建Boss敌机对象
      */
-    private void creatBossEnemy() {
+    public abstract void creatBossEnemy();
+
+    public void creatBossEnemyHelpHelp(int borderToBoss, int hpAdd) {
+
         synchronized (Game.class) {
             EnemyFactory factory;
             // 分数达到设定阈值后出现BOSS敌机，可多次出现
             if (score >= scoreToBoss) {
-
-                factory = new BossEnemyFactory();
-                bossEnemy = factory.createEnemy();
-                //设置为散射弹道
-                bossEnemy.setShootStrategy(new ScatteringShoot());
-                abstractEnemyAircrafts.add(bossEnemy);
-                scoreToBoss += 500;
+                if (bossEnemy == null || bossEnemy.notValid()) {
+                    factory = new BossEnemyFactory();
+                    BossEnemyFactory.bossHP += hpAdd;
+                    bossEnemy = factory.createEnemy(5,BossEnemyFactory.bossHP);
+                    System.out.println("敌机血量为" + bossEnemy.getHp());
+                    //设置为散射弹道
+                    bossEnemy.setShootStrategy(new ScatteringShoot());
+                    abstractEnemyAircrafts.add(bossEnemy);
+                    scoreToBoss += borderToBoss;
+                }
             }
         }
 
@@ -389,7 +420,7 @@ public class Game extends JPanel {
                     subscribers.add(heroAircraft);
                     ((BombProp) prop).setSubscribers(subscribers);
                     for (AbstractEnemyAircraft enemy : abstractEnemyAircrafts) {
-                        score+=enemy.getCrashScore();
+                        score += enemy.getCrashScore();
                     }
                 }
                 // 英雄碰到道具
@@ -402,7 +433,6 @@ public class Game extends JPanel {
                 prop.vanish();
             }
         }
-
 
 
     }
@@ -489,5 +519,9 @@ public class Game extends JPanel {
 
     public boolean isGameOverFlag() {
         return gameOverFlag;
+    }
+
+    public int getTime() {
+        return time;
     }
 }

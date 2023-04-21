@@ -9,12 +9,14 @@ import edu.hitsz.application.Main;
  * @author leng
  */
 public class BossEnemyFactory implements EnemyFactory{
+
+    public static int bossHP=150;
     @Override
-    public AbstractEnemyAircraft createEnemy() {
+    public AbstractEnemyAircraft createEnemy(int speed,int hp) {
         return new BossEnemy((int) (Math.random() * (Main.WINDOW_WIDTH - ImageManager.MOB_ENEMY_IMAGE.getWidth())),
                 (int) (Math.random() * Main.WINDOW_HEIGHT * 0.05),
-                5,
+                speed,
                 0,
-                150);
+                hp);
     }
 }

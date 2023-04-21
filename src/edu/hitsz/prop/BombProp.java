@@ -60,7 +60,7 @@ public class BombProp extends BaseProp {
      */
     @Override
     public void activeProp(HeroAircraft heroAircraft) {
-        System.out.println("BombSupply active!");
+//        System.out.println("BombSupply active!");
         //todo 炸弹爆炸音效
         new MusicThread("src/videos/bomb_explosion.wav").start();
         notifyAllSubscribers();
