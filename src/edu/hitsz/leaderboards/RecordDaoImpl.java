@@ -18,12 +18,26 @@ public class RecordDaoImpl implements RecordDao {
 
     RecordsTable recordsTable;
     String filename;
+    int difficulty;
 
 
     public RecordDaoImpl() {
         playerRecords = new ArrayList<PlayerRecord>();
 
-        switch (Main.difficulty) {
+        this.difficulty=Main.difficulty;
+        createFilename();
+
+        readRecords();
+    }
+    public RecordDaoImpl(int diff) {
+        playerRecords = new ArrayList<PlayerRecord>();
+        this.difficulty=diff;
+        createFilename();
+
+        readRecords();
+    }
+    private void createFilename() {
+        switch (difficulty) {
             case 1:
                 filename = "src/edu/hitsz/leaderboards/easyPlayerRecords.dat";
                 break;
@@ -35,10 +49,8 @@ public class RecordDaoImpl implements RecordDao {
                 break;
 
             default:
-                throw new IllegalStateException("Unexpected value: " + Main.difficulty);
+                throw new IllegalStateException("Unexpected value: " + difficulty);
         }
-
-        readRecords();
     }
 
     @Override
@@ -52,6 +64,12 @@ public class RecordDaoImpl implements RecordDao {
         return playerRecords;
     }
 
+
+    public List<PlayerRecord> getAllRecordsByDiff() {
+
+        return playerRecords;
+
+    }
     @Override
     public void doDeleteByName(String playerName) {
         for (PlayerRecord playerRecord : playerRecords) {
@@ -87,7 +105,7 @@ public class RecordDaoImpl implements RecordDao {
         sortByScore();
         //todo 打印历史记录排行榜
 
-        RecordsTable recordsTable = new RecordsTable();
+        RecordsTable recordsTable = new RecordsTable(Main.difficulty);
         Main.cardPanel.add(recordsTable.getMainPanel());
         Main.cardLayout.next(Main.cardPanel);
 

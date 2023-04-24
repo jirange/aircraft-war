@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ui.StartMenu">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="80" left="50" bottom="50" right="80"/>
+    <constraints>
+      <xy x="20" y="20" width="675" height="689"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="126e" class="javax.swing.JButton" binding="startButton">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="100" height="80"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <text value="开始游戏"/>
+        </properties>
+      </component>
+      <component id="2eca" class="javax.swing.JComboBox" binding="leaderboardBox">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <model>
+            <item value="EASY"/>
+            <item value="NORMAL"/>
+            <item value="DIFFICULT"/>
+          </model>
+        </properties>
+      </component>
+      <component id="bc5ef" class="javax.swing.JButton" binding="leaderboardButton">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="70" height="40"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <text value="查看排行榜"/>
+        </properties>
+      </component>
+      <component id="d1ca2" class="javax.swing.JLabel" binding="label">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="80"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Comic Sans MS" size="72"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="AIRCRAFT"/>
+        </properties>
+      </component>
+      <component id="63c3f" class="javax.swing.JLabel" binding="l2">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="80"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Comic Sans MS" size="72"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="WAR"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

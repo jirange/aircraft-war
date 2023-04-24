@@ -17,6 +17,7 @@ public class DifficultyChoice {
     private JButton difficultButton;
     private JComboBox checkAudio;
     private JPanel panel;
+    private JButton returnButton;
     private JFrame frame;
 
     public boolean isMusicSelected() {
@@ -71,6 +72,15 @@ public class DifficultyChoice {
         checkAudio.addActionListener(e -> {
             System.out.println(checkAudio.getSelectedItem());
             isMusicSelected ="开".equals(checkAudio.getSelectedItem());
+        });
+        returnButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.cardLayout.first(Main.cardPanel);
+            }
         });
     }
 }

@@ -29,6 +29,7 @@ public class HeroAircraft extends AbstractAircraft {
      */
     private int direction = -1;
 
+
     public volatile static HeroAircraft heroAircraft;
 
     /**
@@ -79,5 +80,6 @@ public class HeroAircraft extends AbstractAircraft {
     @Override
     public void update() {
         //todo 英雄机可获得坠毁的敌机分数
+        return;
     }
 }

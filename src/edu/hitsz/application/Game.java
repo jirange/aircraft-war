@@ -115,6 +115,7 @@ public abstract class Game extends JPanel {
     private MusicThread musicThread;
 
     public Game() {
+        gameOverFlag = false;
         heroAircraft = HeroAircraft.getHeroAircraft();
 
 

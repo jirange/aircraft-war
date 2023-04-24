@@ -1,14 +1,12 @@
 package edu.hitsz.application;
 
-import edu.hitsz.thread.MusicThread;
+import edu.hitsz.aircraft.HeroAircraft;
+import ui.BackgroundJPanel;
 import ui.DifficultyChoice;
-import ui.RecordsTable;
+import ui.StartMenu;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileInputStream;
-import java.util.Date;
 
 /**
  * 程序入口
@@ -22,7 +20,8 @@ public class Main {
     public static int difficulty = 0;
     public static Thread mainGameThread;
     public static DifficultyChoice difficultyChoice;
-    public static CardLayout cardLayout = new CardLayout(0,0);
+    public static StartMenu startMenu;
+    public static CardLayout cardLayout = new CardLayout(0, 0);
     public static JPanel cardPanel = new JPanel(cardLayout);
 
     public static void start() {
@@ -44,10 +43,15 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(((int) screenSize.getWidth() - WINDOW_WIDTH) / 2, 0,
                 WINDOW_WIDTH, WINDOW_HEIGHT);
+        frame.getLayeredPane().add(new BackgroundJPanel("src/images/bg.jpg"));
         frame.add(cardPanel);
 
-        difficultyChoice = new DifficultyChoice();
+/*        difficultyChoice = new DifficultyChoice();
         cardPanel.add(difficultyChoice.getMainPanel());
+        frame.setVisible(true);*/
+        startMenu = new StartMenu();
+        cardPanel.add(startMenu.getMainPanel());
+//        cardPanel.add(new BackgroundJPanel("src/images/bg.jpg"));
         frame.setVisible(true);
 
     }
@@ -70,19 +74,22 @@ public class Main {
                 throw new IllegalStateException("Unexpected value: " + Main.difficulty);
         }
 
-        cardPanel.add(game);
-            cardLayout.next(cardPanel);
-            game.action();
+        if (HeroAircraft.heroAircraft != null) {
+            HeroAircraft.heroAircraft=null;
         }
 
-
+        cardPanel.add(game);
+        cardLayout.last(cardPanel);
+        game.action();
+    }
 
 
     /**
      * 获取
+     *
      * @return difficultyStr
      */
-    public static String getDifficultyStr() {
+    public static String getDifficultyStr(int difficulty) {
         switch (difficulty) {
             case 1:
                 return "EASY";
@@ -95,7 +102,6 @@ public class Main {
         }
 
     }
-
 
 
 }

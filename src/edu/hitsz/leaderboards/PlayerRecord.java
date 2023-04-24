@@ -151,6 +151,6 @@ public class PlayerRecord implements Serializable {
 
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
-        return Main.getDifficultyStr()+": " + score + ", " + format.format(recordTime);
+        return Main.getDifficultyStr(Main.difficulty)+": " + score + ", " + format.format(recordTime);
     }
 }

@@ -7,6 +7,8 @@ import edu.hitsz.leaderboards.RecordDaoImpl;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
@@ -24,11 +26,14 @@ public class RecordsTable {
     private JLabel headerLabel;
     private JButton deleteButton;
     private JLabel titleLabel;
+    private JButton returnButton;
     private JFrame frame;
     DefaultTableModel model = null;
+    int difficulty;
 
-    public RecordsTable() {
-        headerLabel.setText("难度："+Main.getDifficultyStr());
+    public RecordsTable(int difficulty) {
+        this.difficulty=difficulty;
+        headerLabel.setText("难度："+Main.getDifficultyStr(difficulty));
 
         setModel();
         deleteButton.addMouseListener(new MouseAdapter() {
@@ -64,12 +69,21 @@ public class RecordsTable {
 
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         scoreTable.setDefaultRenderer(Object.class, tcr);
+        returnButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.cardLayout.first(Main.cardPanel);
+            }
+        });
     }
 
     private DefaultTableModel setModel() {
         SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
 
-        List<PlayerRecord> playerRecords = new RecordDaoImpl().getAllRecords();
+        List<PlayerRecord> playerRecords = new RecordDaoImpl(difficulty).getAllRecords();
         String[] columnName = {"名次", "玩家名", "得分", "记录时间"};
         String[][] tableData = new String[playerRecords.size()][4];
         for (int i = 0; i < playerRecords.size(); i++) {
