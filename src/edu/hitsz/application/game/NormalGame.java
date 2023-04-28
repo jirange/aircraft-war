@@ -42,14 +42,14 @@ public class NormalGame extends Game {
                 superEnemyPro += 0.01;
             }
             if (enemySpeedAdd <= 30) {
-                enemyHpAdd += 1;
-                if (enemyHpAdd % 3==0) {
+                enemyHpAdd += 2;
+                if (enemyHpAdd % 4==0) {
                     enemySpeedAdd += 1;
                 }
             }
             enemyMaxNumber++;
 
-            System.out.printf("周期=%d\t最大敌机数量=%d\t普通敌机概率:%.2f\t精英敌机概率:%.2f\t敌机血量增幅:%d\t敌机速度增幅:%d\n",cycleDuration,enemyMaxNumber,mobEnemyPro,superEnemyPro, enemyHpAdd, enemySpeedAdd);
+            System.out.printf("时间:%d\t周期:%d\t最大敌机数量:%d\t普通敌机概率:%.2f\t精英敌机概率:%.2f\t敌机血量增幅:%d\t敌机速度增幅:%d\n",time,cycleDuration,enemyMaxNumber,mobEnemyPro,superEnemyPro, enemyHpAdd, enemySpeedAdd);
         }
     }
 

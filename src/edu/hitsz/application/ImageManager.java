@@ -45,10 +45,7 @@ public class ImageManager {
 
     static {
         try {
-
-            updateBackground();
-
-
+//            updateBackground();
             HERO_IMAGE = ImageIO.read(new FileInputStream("src/images/hero.png"));
             MOB_ENEMY_IMAGE = ImageIO.read(new FileInputStream("src/images/mob.png"));
 
@@ -88,20 +85,13 @@ public class ImageManager {
         try {
             switch (Main.difficulty) {
                 case 1:
-
                     BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg.jpg"));
-
-                    System.out.println("nn1111111111111");
                     break;
                 case 2:
                     BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg3.jpg"));
-                    System.out.println("22222222222222222222222");
-
                     break;
                 case 3:
                     BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg5.jpg"));
-                    System.out.println("3333333333333333333");
-
                     break;
             }
         } catch (IOException e) {

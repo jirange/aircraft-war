@@ -181,7 +181,7 @@ public abstract class Game extends JPanel {
             // 子弹移动
             bulletsMoveAction();
 
-            // 道具移动                             3/11
+            // 道具移动
             propsMoveAction();
 
             // 飞机移动
@@ -190,8 +190,9 @@ public abstract class Game extends JPanel {
             // 撞击检测
             crashCheckAction();
 
-            //BOSS敌机生成
+            // BOSS敌机生成
             creatBossEnemy();
+
 
             // 后处理
             postProcessAction();
@@ -247,7 +248,9 @@ public abstract class Game extends JPanel {
     //***********************
 
     public boolean timeCountAndNewCycleJudge(){
+        // 控制游戏难度
         controlDifficulty();
+
         cycleTime += timeInterval;
         if (cycleTime >= cycleDuration && cycleTime - timeInterval < cycleTime) {
             // 跨越到新的周期
@@ -278,7 +281,7 @@ public abstract class Game extends JPanel {
                     factory = new BossEnemyFactory();
                     bossEnemy = factory.createEnemy(5,bossHP);
                     bossHP+=bossHpAdd;
-                    System.out.println("敌机血量为" + bossEnemy.getHp());
+                    System.out.println("boss敌机血量为" + bossEnemy.getHp());
                     //设置为散射弹道
                     bossEnemy.setShootStrategy(new ScatteringShoot());
                     abstractEnemyAircrafts.add(bossEnemy);

@@ -48,11 +48,11 @@ public class DifficultGame extends Game {
         return enemy;
     }
 
-    @Override
-    public boolean timeCountAndNewCycleJudge() {
-        controlDifficulty();
-        return super.timeCountAndNewCycleJudge();
-    }
+//    @Override
+//    public boolean timeCountAndNewCycleJudge() {
+//        controlDifficulty();
+//        return super.timeCountAndNewCycleJudge();
+//    }
 
     @Override
     protected void controlDifficulty() {
@@ -65,15 +65,15 @@ public class DifficultGame extends Game {
                 superEnemyPro += 0.02;
             }
             if (enemySpeedAdd <= 30) {
-                enemyHpAdd += 2;
-                if (enemyHpAdd % 2==0) {
+                enemyHpAdd += 4;
+                if (enemyHpAdd % 4==0) {
                     enemySpeedAdd += 1;
                 }
                 enemySpeedAdd += 1;
             }
             enemyMaxNumber+=2;
 
-            System.out.printf("周期:%d\t最大敌机数量:%d\t普通敌机概率:%.2f\t精英敌机概率:%.2f\t敌机血量增幅:%d\t敌机速度增幅:%d\n",cycleDuration,enemyMaxNumber,mobEnemyPro,superEnemyPro, enemyHpAdd, enemySpeedAdd);
+            System.out.printf("时间:%d\t周期:%d\t最大敌机数量:%d\t普通敌机概率:%.2f\t精英敌机概率:%.2f\t敌机血量增幅:%d\t敌机速度增幅:%d\n",time,cycleDuration,enemyMaxNumber,mobEnemyPro,superEnemyPro, enemyHpAdd, enemySpeedAdd);
         }
     }
 }
