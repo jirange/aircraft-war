@@ -1,17 +1,4 @@
-package edu.hitsz.application;
-
-import edu.hitsz.aircraft.enemy.AbstractEnemyAircraft;
-import edu.hitsz.aircraft.enemy.factory.BossEnemyFactory;
-import edu.hitsz.aircraft.enemy.factory.EnemyFactory;
-import edu.hitsz.aircraft.enemy.factory.MobEnemyFactory;
-import edu.hitsz.aircraft.enemy.factory.SuperEnemyFactory;
-import edu.hitsz.leaderboards.PlayerRecord;
-import edu.hitsz.leaderboards.RecordDaoImpl;
-import edu.hitsz.strategy.shoot.ScatteringShoot;
-import edu.hitsz.thread.MusicThread;
-
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
+package edu.hitsz.application.game;
 
 public class EasyGame extends Game{
     private int scoreToBoss = 100;
@@ -30,13 +17,6 @@ public class EasyGame extends Game{
      */
     private int enemyMaxNumber = 5;
 
-    /**
-     *
-     */
-    @Override
-    public void createEnemyAircraftByCycle() {
-        super.creatHelp(enemyMaxNumber,superEnemyPro,0,0);
-    }
 
     /**
      * 监听 创建Boss敌机对象

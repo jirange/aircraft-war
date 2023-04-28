@@ -1,6 +1,10 @@
 package edu.hitsz.application;
 
 import edu.hitsz.aircraft.HeroAircraft;
+import edu.hitsz.application.game.DifficultGame;
+import edu.hitsz.application.game.EasyGame;
+import edu.hitsz.application.game.Game;
+import edu.hitsz.application.game.NormalGame;
 import ui.BackgroundJPanel;
 import ui.DifficultyChoice;
 import ui.StartMenu;
@@ -25,10 +29,10 @@ public class Main {
     public static JPanel cardPanel = new JPanel(cardLayout);
 
     public static void start() {
-/*        Runnable mainGame = () -> {getMain();};
+        Runnable mainGame = () -> {getMain();};
         mainGameThread = new Thread(mainGame, "mainGame");
-        mainGameThread.start();*/
-        getMain();
+        mainGameThread.start();
+        //getMain();
     }
 
     public static void main(String[] args) {
@@ -77,7 +81,8 @@ public class Main {
         if (HeroAircraft.heroAircraft != null) {
             HeroAircraft.heroAircraft=null;
         }
-
+        // 更新一下页面背景
+        ImageManager.updateBackground();
         cardPanel.add(game);
         cardLayout.last(cardPanel);
         game.action();

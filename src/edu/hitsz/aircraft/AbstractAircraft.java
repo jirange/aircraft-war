@@ -17,6 +17,11 @@ public abstract class AbstractAircraft extends AbstractFlyingObject {
      * 生命值
      */
     protected int maxHp;
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
     protected int hp;
 
 

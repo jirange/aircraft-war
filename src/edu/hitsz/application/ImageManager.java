@@ -46,20 +46,7 @@ public class ImageManager {
     static {
         try {
 
-            switch (Main.difficulty) {
-                case 1:
-                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg.jpg"));
-                    break;
-                case 2:
-                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg3.jpg"));
-                    break;
-                case 3:
-                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg5.jpg"));
-                    break;
-
-                default:
-                    throw new IllegalStateException("Unexpected value: " + Main.difficulty);
-            }
+            updateBackground();
 
 
             HERO_IMAGE = ImageIO.read(new FileInputStream("src/images/hero.png"));
@@ -94,6 +81,31 @@ public class ImageManager {
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
+        }
+    }
+
+    public static void updateBackground() {
+        try {
+            switch (Main.difficulty) {
+                case 1:
+
+                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg.jpg"));
+
+                    System.out.println("nn1111111111111");
+                    break;
+                case 2:
+                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg3.jpg"));
+                    System.out.println("22222222222222222222222");
+
+                    break;
+                case 3:
+                    BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg5.jpg"));
+                    System.out.println("3333333333333333333");
+
+                    break;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
