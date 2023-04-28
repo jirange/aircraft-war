@@ -12,36 +12,41 @@ public class DifficultGame extends Game {
     /**
      * borderToBoss 生成BOSS敌机的阈值的增长幅度
      */
-    private int borderToBoss = 500;
+    protected int borderAddForBoss = 500;
+
+
+
+
+//    /**
+//     * 屏幕中出现的敌机最大数量
+//     */
+//    private int enemyMaxNumber = 5;
+
+//    /**
+//     * 时间间隔(ms)，控制刷新频率su
+//     */
+//    private int timeInterval = 40;
+    int hpAdd4enemy = 0;
+    int speedAdd = 0;
+
+//    /**
+//     * 概率
+//     * 指示普通敌机、精英敌机的产生分配的概率
+//     */
+//    private double mobEnemyPro = 0.7;
+//    private double superEnemyPro = 1 - mobEnemyPro;
 
 
     /**
      * 监听 创建Boss敌机对象
+     * 加血 hpAdd = 50; 分数阈值涨幅
      */
-
-    /**
-     * 屏幕中出现的敌机最大数量
-     */
-    private int enemyMaxNumber = 5;
-
-    /**
-     * 时间间隔(ms)，控制刷新频率su
-     */
-    private int timeInterval = 40;
-    int hpAdd4enemy = 0;
-    int speedAdd = 0;
-
-    /**
-     * 概率
-     * 指示普通敌机、精英敌机的产生分配的概率
-     */
-    private double mobEnemyPro = 0.7;
-    private double superEnemyPro = 1 - mobEnemyPro;
-
     @Override
     public void creatBossEnemy() {
 //        super.creatBossEnemyHelpHelp(borderToBoss, hpAdd);
-        super.setBorderAddForBoss(borderToBoss);
+//        super.setBorderAddForBoss(borderToBoss);
+        super.borderAddForBoss= borderAddForBoss;
+
         super.bossHpAdd = hpAdd;
         super.creatBossEnemy();
     }
@@ -64,8 +69,8 @@ public class DifficultGame extends Game {
         if (Math.random() <= superEnemyPro) {
             factory = new SuperEnemyFactory();
             enemy = factory.createEnemy(10 + speedAdd, 60 + hpAdd4enemy);
-            System.out.println("速度"+enemy.getSpeedY());
-            System.out.println("血量"+enemy.getHp());
+//            System.out.println("速度"+enemy.getSpeedY());
+//            System.out.println("血量"+enemy.getHp());
         } else {
             factory = new MobEnemyFactory();
             enemy = factory.createEnemy(10 + speedAdd, 30 + hpAdd4enemy);
@@ -77,24 +82,17 @@ public class DifficultGame extends Game {
      * 周期（ms)
      * 指示子弹的发射、敌机的产生频率
      */
-    private int cycleDuration = 500;
-    private int cycleTime = 0;
+//    protected int cycleDuration = 500;
+//    private int cycleTime = 0;
 
     @Override
     public boolean timeCountAndNewCycleJudge() {
         controlDifficulty();
-        cycleTime += timeInterval;
-        if (cycleTime >= cycleDuration && cycleTime - timeInterval < cycleTime) {
-            // 跨越到新的周期
-            cycleTime %= cycleDuration;
-            return true;
-        } else {
-            return false;
-        }
+        return super.timeCountAndNewCycleJudge();
     }
 
     private void controlDifficulty() {
-        if (super.getTime() % 3000 == 0) {
+        if (time % 3000 == 0) {
             if (cycleDuration >= 200) {
                 cycleDuration -= 10;
             }
@@ -104,7 +102,7 @@ public class DifficultGame extends Game {
             }
             if (speedAdd <= 30) {
                 hpAdd4enemy += 2;
-                if (speedAdd % 2==0) {
+                if (hpAdd4enemy % 2==0) {
                     speedAdd += 1;
                 }
                 speedAdd += 1;
