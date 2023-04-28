@@ -6,84 +6,47 @@ import edu.hitsz.aircraft.enemy.factory.MobEnemyFactory;
 import edu.hitsz.aircraft.enemy.factory.SuperEnemyFactory;
 
 public class DifficultGame extends Game {
-    private AbstractEnemyAircraft bossEnemy;
 
-    int hpAdd = 50;
-    /**
-     * borderToBoss 生成BOSS敌机的阈值的增长幅度
-     */
-    protected int borderAddForBoss = 500;
-
-
-
-
-//    /**
-//     * 屏幕中出现的敌机最大数量
-//     */
-//    private int enemyMaxNumber = 5;
-
-//    /**
-//     * 时间间隔(ms)，控制刷新频率su
-//     */
-//    private int timeInterval = 40;
-    int hpAdd4enemy = 0;
-    int speedAdd = 0;
-
-//    /**
-//     * 概率
-//     * 指示普通敌机、精英敌机的产生分配的概率
-//     */
-//    private double mobEnemyPro = 0.7;
-//    private double superEnemyPro = 1 - mobEnemyPro;
-
-
-    /**
-     * 监听 创建Boss敌机对象
-     * 加血 hpAdd = 50; 分数阈值涨幅
-     */
-    @Override
-    public void creatBossEnemy() {
-//        super.creatBossEnemyHelpHelp(borderToBoss, hpAdd);
-//        super.setBorderAddForBoss(borderToBoss);
-        super.borderAddForBoss= borderAddForBoss;
-
-        super.bossHpAdd = hpAdd;
-        super.creatBossEnemy();
+    public DifficultGame() {
+        // 困难模式下 boss敌机出现 每次分数阈值涨幅为 borderToBoss = 500
+        borderAddForBoss=500;
+        // 血量涨幅50
+        bossHpAdd=50;
     }
+//    int hpAdd = 50;
+//    /**
+//     * borderToBoss 生成BOSS敌机的阈值的增长幅度
+//     */
+//    protected int borderAddForBoss = 500;
 
+    int enemyHpAdd = 0;
+    int enemySpeedAdd = 0;
+
+
+//    /**
+//     * 监听 创建Boss敌机对象
+//     * 加血 hpAdd = 50; 分数阈值涨幅
+//     */
 //    @Override
-//    public void createEnemyAircraftByCycle() {
-//        //controlDifficulty();
-//        super.creatHelp(enemyMaxNumber, superEnemyPro, hpAdd4enemy, speedAdd);
+//    public void creatBossEnemy() {
+////        super.borderAddForBoss= borderAddForBoss;
+////        super.bossHpAdd = hpAdd;
+//        super.creatBossEnemy();
 //    }
 
-    /*    private void controlDifficulty() {
-            if (super.getTime() % 1000 == 0) {
-
-            }
-        }*/
     @Override
     protected AbstractEnemyAircraft getAbstractEnemyAircraft() {
         EnemyFactory factory;
         AbstractEnemyAircraft enemy;
         if (Math.random() <= superEnemyPro) {
             factory = new SuperEnemyFactory();
-            enemy = factory.createEnemy(10 + speedAdd, 60 + hpAdd4enemy);
-//            System.out.println("速度"+enemy.getSpeedY());
-//            System.out.println("血量"+enemy.getHp());
+            enemy = factory.createEnemy(10 + enemySpeedAdd, 60 + enemyHpAdd);
         } else {
             factory = new MobEnemyFactory();
-            enemy = factory.createEnemy(10 + speedAdd, 30 + hpAdd4enemy);
+            enemy = factory.createEnemy(10 + enemySpeedAdd, 30 + enemyHpAdd);
         }
         return enemy;
     }
-
-    /**
-     * 周期（ms)
-     * 指示子弹的发射、敌机的产生频率
-     */
-//    protected int cycleDuration = 500;
-//    private int cycleTime = 0;
 
     @Override
     public boolean timeCountAndNewCycleJudge() {
@@ -91,7 +54,8 @@ public class DifficultGame extends Game {
         return super.timeCountAndNewCycleJudge();
     }
 
-    private void controlDifficulty() {
+    @Override
+    protected void controlDifficulty() {
         if (time % 3000 == 0) {
             if (cycleDuration >= 200) {
                 cycleDuration -= 10;
@@ -100,18 +64,16 @@ public class DifficultGame extends Game {
                 mobEnemyPro -= 0.02;
                 superEnemyPro += 0.02;
             }
-            if (speedAdd <= 30) {
-                hpAdd4enemy += 2;
-                if (hpAdd4enemy % 2==0) {
-                    speedAdd += 1;
+            if (enemySpeedAdd <= 30) {
+                enemyHpAdd += 2;
+                if (enemyHpAdd % 2==0) {
+                    enemySpeedAdd += 1;
                 }
-                speedAdd += 1;
+                enemySpeedAdd += 1;
             }
             enemyMaxNumber+=2;
 
-            System.out.printf("周期:%d\t最大敌机数量:%d\t普通敌机概率:%.2f\t精英敌机概率:%.2f\t敌机血量增幅:%d\t敌机速度增幅:%d\n",cycleDuration,enemyMaxNumber,mobEnemyPro,superEnemyPro,hpAdd4enemy,speedAdd);
-
-
+            System.out.printf("周期:%d\t最大敌机数量:%d\t普通敌机概率:%.2f\t精英敌机概率:%.2f\t敌机血量增幅:%d\t敌机速度增幅:%d\n",cycleDuration,enemyMaxNumber,mobEnemyPro,superEnemyPro, enemyHpAdd, enemySpeedAdd);
         }
     }
 }

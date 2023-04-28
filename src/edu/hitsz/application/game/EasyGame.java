@@ -6,14 +6,6 @@ import edu.hitsz.aircraft.enemy.factory.MobEnemyFactory;
 import edu.hitsz.aircraft.enemy.factory.SuperEnemyFactory;
 
 public class EasyGame extends Game{
-    /**
-     * 监听 创建Boss敌机对象
-     * 重写方法：简单模式不创建boss敌机
-     */
-    @Override
-    public void creatBossEnemy() {
-        return;
-    }
 
 
     @Override
@@ -30,5 +22,13 @@ public class EasyGame extends Game{
             enemy = factory.createEnemy(10,30);
         }
         return enemy;
+    }
+
+    /**
+     * 简单模式：不用控制难度变化
+     */
+    @Override
+    protected void controlDifficulty() {
+        return;
     }
 }

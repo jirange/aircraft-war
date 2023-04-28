@@ -47,9 +47,9 @@ public abstract class Game extends JPanel {
      */
     private final ScheduledExecutorService executorService;
 
-    public int getScoreToBoss() {
-        return scoreToBoss;
-    }
+//    public int getScoreToBoss() {
+//        return scoreToBoss;
+//    }
 
     /**
      * scoreToBoss 生成BOSS敌机的阈值
@@ -240,20 +240,6 @@ public abstract class Game extends JPanel {
     }
 
     protected abstract AbstractEnemyAircraft getAbstractEnemyAircraft() ;
-//    {
-//        EnemyFactory factory;
-//        AbstractEnemyAircraft enemy;
-//        if (Math.random() <= superEnemyPro) {
-//            factory = new SuperEnemyFactory();
-//            enemy = factory.createEnemy(10,60);
-//            System.out.println(enemy.getSpeedY());
-//            System.out.println(enemy.getHp());
-//        } else {
-//            factory = new MobEnemyFactory();
-//            enemy = factory.createEnemy(10,30);
-//        }
-//        return enemy;
-//    }
 
 
     //***********************
@@ -261,6 +247,7 @@ public abstract class Game extends JPanel {
     //***********************
 
     public boolean timeCountAndNewCycleJudge(){
+        controlDifficulty();
         cycleTime += timeInterval;
         if (cycleTime >= cycleDuration && cycleTime - timeInterval < cycleTime) {
             // 跨越到新的周期
@@ -272,8 +259,15 @@ public abstract class Game extends JPanel {
     }
 
     /**
-     * 监听 创建Boss敌机对象
+     * 控制游戏难度 如周期，最大敌机数量，普通敌机概率，精英敌机概率，敌机血量增，敌机速度增幅
+     * cycleDuration,enemyMaxNumber,mobEnemyPro,superEnemyPro, enemyHpAdd, enemySpeedAdd
      */
+    protected abstract void controlDifficulty();
+
+
+        /**
+         * 监听 创建Boss敌机对象
+         */
     public void creatBossEnemy(){
 //        int hpAdd=0;
         synchronized (Game.class) {
