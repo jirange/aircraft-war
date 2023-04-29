@@ -1,52 +1,53 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+
+abstract class AbstractEnemyAircraft {
+    + AbstractEnemyAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+}
+
+
 class MobEnemy {
 '普通敌机类
     + MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
-    + forward():void
-    + shoot():List<BaseBullet>
-    + dropProp():BaseProp
 }
-EnemyAircraft <|-- MobEnemy
 
 class SuperEnemy {
 '精英敌机类
-    - shootNum:int
-    - power:int
-    - direction:int
-    - shoot_speed:int
-
     + SuperEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
-    + forward():void
-    + shoot():List<BaseBullet>
-    + dropProp():BaseProp
 }
-EnemyAircraft <|-- SuperEnemy
 
-abstract class EnemyAircraft {
-    + EnemyAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
-    + {abstract} dropProp():BaseProp
+class BossEnemy {
+'boss敌机类
+    + BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
 }
-abstract class AbstractAircraft {
-}
-AbstractAircraft <|-- EnemyAircraft
+
+
 
 interface EnemyFactory{
-    + {abstract} createEnemy():EnemyAircraft
+    + {abstract} createEnemy(int speed,int hp):AbstractEnemyAircraft
 }
 class MobEnemyFactory {
-    + createEnemy():EnemyAircraft
+    + createEnemy(int speed,int hp):AbstractEnemyAircraft
 }
 class SuperEnemyFactory {
-    + createEnemy():EnemyAircraft
+    + createEnemy(int speed,int hp):AbstractEnemyAircraft
+}
+class BossEnemyFactory {
+    + createEnemy(int speed,int hp):AbstractEnemyAircraft
 }
 
 EnemyFactory<|.. MobEnemyFactory
 EnemyFactory<|.. SuperEnemyFactory
+EnemyFactory<|.. BossEnemyFactory
+AbstractEnemyAircraft <|-- MobEnemy
+AbstractEnemyAircraft <|-- SuperEnemy
+AbstractEnemyAircraft <|-- BossEnemy
+
 
 MobEnemyFactory ..> MobEnemy:"«create»"
 SuperEnemyFactory ..> SuperEnemy:"«create»"
+BossEnemyFactory ..> BossEnemy:"«create»"
 Game ..> EnemyFactory
-Game ..> EnemyAircraft
+Game ..> AbstractEnemyAircraft
 
 @enduml

@@ -6,13 +6,7 @@
 abstract class AbstractAircraft
 '抽象飞行器类
 {
-	# maxHp:int
-    # hp:int
     - shootStrategy:ShootStrategy
-
-    + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
-    + decreaseHp(int decrease):void
-    + getHp():int
     + setShootStrategy(ShootStrategy shootStrategy):void
     + DoShootStrategy(int direction, int shootSpeed, int shootNum):List<BaseBullet>
     + {abstract} shoot():List<BaseBullet>

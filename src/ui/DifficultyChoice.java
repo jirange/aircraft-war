@@ -1,6 +1,7 @@
 package ui;
 
 import edu.hitsz.application.Main;
+import edu.hitsz.thread.MusicThread;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,11 +21,9 @@ public class DifficultyChoice {
     private JButton returnButton;
     private JFrame frame;
 
-    public boolean isMusicSelected() {
-        return isMusicSelected;
-    }
 
-    boolean isMusicSelected=true;
+
+    public  static boolean isMusicSelected = true;
 
     public int getDifficulty() {
         return difficulty;
@@ -42,6 +41,7 @@ public class DifficultyChoice {
     }
 
     public DifficultyChoice() {
+//        isMusicSelected= MusicThread.haveAudio;
         simpleButton.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -70,7 +70,6 @@ public class DifficultyChoice {
             }
         });
         checkAudio.addActionListener(e -> {
-            System.out.println(checkAudio.getSelectedItem());
             isMusicSelected ="开".equals(checkAudio.getSelectedItem());
         });
         returnButton.addActionListener(new ActionListener() {

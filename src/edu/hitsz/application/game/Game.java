@@ -5,8 +5,6 @@ import edu.hitsz.aircraft.HeroAircraft;
 import edu.hitsz.aircraft.enemy.AbstractEnemyAircraft;
 import edu.hitsz.aircraft.enemy.factory.BossEnemyFactory;
 import edu.hitsz.aircraft.enemy.factory.EnemyFactory;
-import edu.hitsz.aircraft.enemy.factory.MobEnemyFactory;
-import edu.hitsz.aircraft.enemy.factory.SuperEnemyFactory;
 import edu.hitsz.application.HeroController;
 import edu.hitsz.application.ImageManager;
 import edu.hitsz.application.Main;
@@ -21,6 +19,7 @@ import edu.hitsz.strategy.shoot.DirectShoot;
 import edu.hitsz.strategy.shoot.ScatteringShoot;
 import edu.hitsz.thread.MusicThread;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+import ui.DifficultyChoice;
 
 import javax.swing.*;
 import java.awt.*;
@@ -146,7 +145,7 @@ public abstract class Game extends JPanel {
 
         //todo 开启bgm
         musicThread = new MusicThread("src/videos/bgm.wav");
-        if (Main.difficultyChoice.isMusicSelected()) {
+        if (DifficultyChoice.isMusicSelected) {
             MusicThread.haveAudio = true;
             musicThread.setLoop(true);
             musicThread.start();
@@ -209,7 +208,7 @@ public abstract class Game extends JPanel {
                 new MusicThread("src/videos/game_over.wav").start();
 
                 //todo 关闭音乐bgm
-                if (Main.difficultyChoice.isMusicSelected()) {
+                if (DifficultyChoice.isMusicSelected) {
                     musicThread.setToEnd(true);
                 }
 
@@ -226,7 +225,7 @@ public abstract class Game extends JPanel {
                 Date date = new Date();
                 PlayerRecord userRecord = new PlayerRecord(Main.difficulty, score, date);
                 System.out.println("玩家得分：" + userRecord.toString());
-                recordDao.addAfterEnd(userRecord);
+                recordDao.updateData(userRecord);
 
             }
 

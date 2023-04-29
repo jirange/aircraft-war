@@ -43,7 +43,7 @@
           <text value="查看排行榜"/>
         </properties>
       </component>
-      <component id="d1ca2" class="javax.swing.JLabel" binding="label">
+      <component id="d1ca2" class="javax.swing.JLabel" binding="wordLabel1">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="200" height="80"/>
@@ -56,7 +56,7 @@
           <text value="AIRCRAFT"/>
         </properties>
       </component>
-      <component id="63c3f" class="javax.swing.JLabel" binding="l2">
+      <component id="63c3f" class="javax.swing.JLabel" binding="wordLabel2">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="200" height="80"/>

@@ -1,62 +1,38 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-class Game {  /'发布者 publisher'/
-'炸弹道具类
-    - subscribers:List<Subscriber> /'订阅者清单   所有敌机和敌机子弹'/
-/'    + addSubscriber:维护订阅者清单的方法 增加
-    + removeSubscriber:维护订阅者清单的方法 删除'/
-    + setSubscribers(List<Subscriber> subscribers):void
-    + notifyAllSubscriber(): void/'通知所有观察者'/
-    + activeProp(HeroAircraft):void   /'mainBusinessLogic():主要商业逻辑 如 改变汇率 里面是通知所有'/
+class Game {
+    # {abstract} getAbstractEnemyAircraft():AbstractEnemyAircraft
+    # {abstract} controlDifficulty():void
+    + creatBossEnemy():void
 }
 
 
-class EasyGame {  /'发布者 publisher'/
-'炸弹道具类
-    - subscribers:List<Subscriber> /'订阅者清单   所有敌机和敌机子弹'/
-/'    + addSubscriber:维护订阅者清单的方法 增加
-    + removeSubscriber:维护订阅者清单的方法 删除'/
-    + setSubscribers(List<Subscriber> subscribers):void
-    + notifyAllSubscriber(): void/'通知所有观察者'/
-    + activeProp(HeroAircraft):void   /'mainBusinessLogic():主要商业逻辑 如 改变汇率 里面是通知所有'/
+class EasyGame {
+    # getAbstractEnemyAircraft():AbstractEnemyAircraft
+    # controlDifficulty():void
+    + creatBossEnemy():void
 }
 
-
-class NormalGame {  /'发布者 publisher'/
-'炸弹道具类
-    - subscribers:List<Subscriber> /'订阅者清单   所有敌机和敌机子弹'/
-/'    + addSubscriber:维护订阅者清单的方法 增加
-    + removeSubscriber:维护订阅者清单的方法 删除'/
-    + setSubscribers(List<Subscriber> subscribers):void
-    + notifyAllSubscriber(): void/'通知所有观察者'/
-    + activeProp(HeroAircraft):void   /'mainBusinessLogic():主要商业逻辑 如 改变汇率 里面是通知所有'/
+class NormalGame {
+    - enemyHpAdd:int
+    - enemySpeedAdd:int
+    + NormalGame()
+    # getAbstractEnemyAircraft():AbstractEnemyAircraft
+    # controlDifficulty():void
 }
 
-
-class Diffi  {  /'发布者 publisher'/
-'炸弹道具类
-    - subscribers:List<Subscriber> /'订阅者清单   所有敌机和敌机子弹'/
-/'    + addSubscriber:维护订阅者清单的方法 增加
-    + removeSubscriber:维护订阅者清单的方法 删除'/
-    + setSubscribers(List<Subscriber> subscribers):void
-    + notifyAllSubscriber(): void/'通知所有观察者'/
-    + activeProp(HeroAircraft):void   /'mainBusinessLogic():主要商业逻辑 如 改变汇率 里面是通知所有'/
+class DifficultGame {
+    - enemyHpAdd:int
+    - enemySpeedAdd:int
+    + DifficultGame()
+    # getAbstractEnemyAircraft():AbstractEnemyAircraft
+    # controlDifficulty():void
 }
 
+Game <|-- EasyGame
+Game <|-- NormalGame
+Game <|-- DifficultGame
 
-interface Subscriber{
-'订阅者接口'
-    + {abstract}update():void
-}
-'action方法升级成模板方法  子类去实现具体的
-BombProp o--> Subscriber
-Subscriber <|-- AbstractFlyingObject
-Game --> BombProp
-Game ..> AbstractFlyingObject
-'update 方法里要消亡 坠毁 消失 减血量'
-'client  game  or 炸弹的active方法里面 传参的方法  都有利有弊 都可以'
-class AbstractFlyingObject {  /'发布者 publisher'/
-    + update():void
-}
+
 @enduml

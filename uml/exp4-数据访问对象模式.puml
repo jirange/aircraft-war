@@ -2,43 +2,40 @@
 'https://plantuml.com/sequence-diagram
 
 class PlayerRecord {
-  - playerName: String
-  - difficulty: int
-  - recordTime: Date
-  - ranking: int
-  - score: int
-  + getPlayerName(): String
-  + getDifficulty(): int
-  + toString(): String
-  + setDifficulty(int difficulty): void
-  + getScore(): int
-  + getRecordTime(): Date
-  + setScore(int score): void
-  + setRanking(int ranking): void
-  + setRecordTime(Date recordTime): void
-  + setPlayerName(String playerName): void
-  + getRanking(): int
-  + PlayerRecord(String playerName, int score, Date recordTime):
-  + PlayerRecord():
+    - {static} {final} serialVersionUID: long
+    - playerName: String
+    - difficulty: int
+    - recordTime: Date
+    - ranking: int
+    - score: int
+    + PlayerRecord(int difficulty,int score, Date recordTime)
+    + getRecordTime(): Date
+    + getRanking(): int
+    + setRanking(int ranking): void
+    + getPlayerName(): String
+    + setPlayerName(String playerName): void
+    + getScore(): int
+    + toString(): String
 }
 interface RecordDao {
-  + doDeleteByRanking(int ranking): void
-  + printAll(): void
-  + getAllRecords(): List<PlayerRecord>
-  + doAdd(PlayerRecord record): void
-  + doDeleteByName(String playerName): void
+    + doAdd(PlayerRecord record): void
+    + getAllRecords(): List<PlayerRecord>
+    + doDeleteByRanking(int ranking): void
+    + printAll(): void
 }
 class RecordDaoImpl {
-  - playerRecords: List<PlayerRecord>
-  + doDeleteByName(String playerName): void
-  + getAllRecords(): List<PlayerRecord>
-  + doAdd(PlayerRecord record): void
-  + doDeleteByRanking(int ranking): void
-  + printAll(): void
-  + RecordDaoImpl():
-  - sortByScore(): void
-  - readRecords(): void
-  - saveRecords(): void
+    - playerRecords: List<PlayerRecord>
+    + RecordDaoImpl()
+    + RecordDaoImpl(int diff)
+    + getAllRecords(): List<PlayerRecord>
+    + doAdd(PlayerRecord record): void
+    + doDeleteByRanking(int ranking): void
+    + printAll(): void
+    + updateData(): void
+    - createFilename():void
+    - sortByScore(): void
+    - readRecords(): void
+    - saveRecords(): void
 }
 
 RecordDaoImpl  *-->  PlayerRecord

@@ -13,33 +13,12 @@ public class StartMenu {
     private JComboBox leaderboardBox;
     private JPanel mainPanel;
     private JButton leaderboardButton;
-    private JLabel label;
-    private JLabel l2;
+    private JLabel wordLabel1;
+    private JLabel wordLabel2;
     int difficulty=1;
-
-    static JPanel GImage;
-
-
-
-    public static void main(String[] args) {
-
-
-        JFrame frame = new JFrame("StartMenu");
-        frame.setContentPane(new StartMenu().mainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(new Dimension(512, 768));
-        frame.pack();
-        frame.getLayeredPane().add(GImage);
-
-        frame.setVisible(true);
-
-//        frame.getContentPane().add(new BackgroundJPanel("src/images/bg.jpg"));
-        frame.repaint();
-    }
 
     public StartMenu() {
         mainPanel.setOpaque(false);
-
 
         startButton.addActionListener(new ActionListener() {
             /**
@@ -51,7 +30,6 @@ public class StartMenu {
                 Main.cardPanel.add(Main.difficultyChoice.getMainPanel());
                 Main.cardLayout.next(Main.cardPanel);
             }
-
         });
         leaderboardBox.addActionListener(new ActionListener() {
             /**
@@ -59,16 +37,10 @@ public class StartMenu {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 int selectedIndex = leaderboardBox.getSelectedIndex();
-                System.out.println(selectedIndex);
-
                 difficulty = selectedIndex + 1;
-
-
             }
         });
-
 
         leaderboardButton.addActionListener(new ActionListener() {
             /**
@@ -81,25 +53,8 @@ public class StartMenu {
                 Main.cardLayout.last(Main.cardPanel);
             }
         });
-        GImage = new JPanel() {
-            @Override
-            public void paint(Graphics g) {
-                super.paint(g);
-                ImageIcon icon = new ImageIcon("src/images/bg.jpg");
-                Image img = icon.getImage();
-                g.drawImage(img, 0, 0, icon.getIconWidth(), icon.getIconHeight(), icon.getImageObserver());
-
-            }
-        };
-
-
-
-
     }
-
     public JPanel getMainPanel() {
         return mainPanel;
     }
-
-
 }

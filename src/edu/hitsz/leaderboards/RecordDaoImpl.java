@@ -64,22 +64,22 @@ public class RecordDaoImpl implements RecordDao {
         return playerRecords;
     }
 
-
-    public List<PlayerRecord> getAllRecordsByDiff() {
-
-        return playerRecords;
-
-    }
-    @Override
-    public void doDeleteByName(String playerName) {
-        for (PlayerRecord playerRecord : playerRecords) {
-            if (playerRecord.getPlayerName().equals(playerName)) {
-                playerRecords.remove(playerRecord);
-                saveRecords();
-                return;
-            }
-        }
-    }
+//
+//    public List<PlayerRecord> getAllRecordsByDiff() {
+//
+//        return playerRecords;
+//
+//    }
+//    @Override
+//    public void doDeleteByName(String playerName) {
+//        for (PlayerRecord playerRecord : playerRecords) {
+//            if (playerRecord.getPlayerName().equals(playerName)) {
+//                playerRecords.remove(playerRecord);
+//                saveRecords();
+//                return;
+//            }
+//        }
+//    }
 
     @Override
     public void doDeleteByRanking(int ranking) {
@@ -101,7 +101,7 @@ public class RecordDaoImpl implements RecordDao {
     }
 
 
-    public void addAfterEnd(PlayerRecord playerRecord) {
+    public void updateData(PlayerRecord playerRecord) {
         sortByScore();
         //todo 打印历史记录排行榜
 

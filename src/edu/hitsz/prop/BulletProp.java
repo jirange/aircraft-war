@@ -1,8 +1,8 @@
 package edu.hitsz.prop;
 
 import edu.hitsz.aircraft.HeroAircraft;
-import edu.hitsz.application.Main;
 import edu.hitsz.strategy.shoot.DirectShoot;
+import edu.hitsz.strategy.shoot.HeartShapedShoot;
 import edu.hitsz.strategy.shoot.ScatteringShoot;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
@@ -29,7 +29,9 @@ public class BulletProp extends BaseProp {
             synchronized (BulletProp.class) {
                 heroAircraft.setShootStrategy(new ScatteringShoot());
                 try {
-                    BulletProp.class.wait(5000);
+                    BulletProp.class.wait(4400);
+                    heroAircraft.setShootStrategy(new HeartShapedShoot());
+                    BulletProp.class.wait(600);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
