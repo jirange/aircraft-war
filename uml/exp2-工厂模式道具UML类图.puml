@@ -48,6 +48,6 @@ BombPropFactory ..> BombProp:"«create»"
 BulletPropFactory ..> BulletProp:"«create»"
 
 SuperEnemy ..> PropFactory
-Game ..> BaseProp
+BaseGame ..> BaseProp
 
 @enduml

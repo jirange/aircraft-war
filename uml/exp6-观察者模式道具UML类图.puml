@@ -14,8 +14,8 @@ interface Subscriber{
 }
 
 BombProp o--> Subscriber
-Game --> BombProp
-Game ..> AbstractFlyingObject
+BaseGame --> BombProp
+BaseGame ..> AbstractFlyingObject
 Subscriber <|-- AbstractFlyingObject
 
 class AbstractFlyingObject {  /'订阅者'/

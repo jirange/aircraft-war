@@ -28,21 +28,6 @@ public class BombProp extends BaseProp {
     public List<Subscriber> subscribers=new ArrayList<>();
 
 
-    /**
-     * 增加观察者
-     * @param subscriber
-     */
-    public void addSubscribers (Subscriber subscriber){
-        subscribers.add(subscriber);
-    }
-
-    /**
-     * 删除观察者
-     * @param subscriber
-     */
-    public void removeSubscriber (Subscriber subscriber){
-        subscribers.remove(subscriber);
-    }
 
     /**
      * 通知所有观察者
@@ -56,16 +41,12 @@ public class BombProp extends BaseProp {
     /**
      * 炸弹道具生效
      * mainBusinessLogic
-     * @param heroAircraft
+     * @param heroAircraft 英雄
      */
     @Override
     public void activeProp(HeroAircraft heroAircraft) {
-//        System.out.println("BombSupply active!");
-        //todo 炸弹爆炸音效
+        // 炸弹爆炸音效
         new MusicThread("src/videos/bomb_explosion.wav").start();
         notifyAllSubscribers();
-        for (Subscriber subscriber : subscribers) {
-
-        }
     }
 }

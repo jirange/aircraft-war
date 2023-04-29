@@ -5,9 +5,12 @@ import edu.hitsz.aircraft.enemy.factory.EnemyFactory;
 import edu.hitsz.aircraft.enemy.factory.MobEnemyFactory;
 import edu.hitsz.aircraft.enemy.factory.SuperEnemyFactory;
 
-public class EasyGame extends Game{
+/**
+ * @author leng
+ */
+public class EasyGame extends BaseGame {
     @Override
-    public void creatBossEnemy(){return;}
+    public void creatBossEnemy(){}
 
     @Override
     protected AbstractEnemyAircraft getAbstractEnemyAircraft() {
@@ -27,7 +30,5 @@ public class EasyGame extends Game{
      * 简单模式：不用控制难度变化
      */
     @Override
-    protected void controlDifficulty() {
-        return;
-    }
+    protected void controlDifficulty() {}
 }

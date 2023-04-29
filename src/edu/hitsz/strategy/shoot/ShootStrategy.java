@@ -10,6 +10,7 @@ import java.util.List;
 public interface ShootStrategy {
 
     /**
+     * 进行射击
      * @param locationX:飞机的横坐标
      * @param locationY:飞机的纵坐标
      * @param speedX:飞机的横向速度
@@ -18,7 +19,6 @@ public interface ShootStrategy {
      * @param shootSpeed:子弹飞行的相对速度
      * @param shootNum:一轮子弹数量
      * @return 子弹列表 List<BaseBullet>
-     *     射击方法
      */
     List<BaseBullet> doShoot(int locationX,int locationY,int speedX,int speedY,int direction,int shootSpeed,int shootNum);
 }

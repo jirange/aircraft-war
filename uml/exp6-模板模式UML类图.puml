@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-class Game {
+class BaseGame {
     # {abstract} getAbstractEnemyAircraft():AbstractEnemyAircraft
     # {abstract} controlDifficulty():void
     + creatBossEnemy():void
@@ -30,9 +30,9 @@ class DifficultGame {
     # controlDifficulty():void
 }
 
-Game <|-- EasyGame
-Game <|-- NormalGame
-Game <|-- DifficultGame
+BaseGame <|-- EasyGame
+BaseGame <|-- NormalGame
+BaseGame <|-- DifficultGame
 
 
 @enduml

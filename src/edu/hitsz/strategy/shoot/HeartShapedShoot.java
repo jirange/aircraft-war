@@ -1,6 +1,5 @@
 package edu.hitsz.strategy.shoot;
 
-import edu.hitsz.aircraft.HeroAircraft;
 import edu.hitsz.bullet.BaseBullet;
 import edu.hitsz.bullet.EnemyBullet;
 import edu.hitsz.bullet.HeroBullet;
@@ -12,19 +11,14 @@ import java.util.*;
  * @author leng
  */
 public class HeartShapedShoot implements ShootStrategy{
-    List<Integer> yList = new ArrayList<Integer>();
-    List<Integer> xList = new ArrayList<Integer>();
-
-    int count=0;
+    List<Integer> yList = new ArrayList<>();
+    List<Integer> xList = new ArrayList<>();
 
     public HeartShapedShoot() {
         super();
-//        Collections.addAll(yList,0,30,15,75,45,60,60,90,100,80,75,20);
         Collections.addAll(yList,0,60,5,75,5,80,15,87,20,90,30,85,40,80,50,70,60);
-//        Collections.addAll(yList,0,10,10,20,20,30,7,7);
-//        Collections.addAll(xList,0,30,10,15,45,0,60,30,45,60,45,15);
         Collections.addAll(xList,0,0,5,5,10,10,20,20,30,30,40,40,50,50,55,55,60);
-//        Collections.addAll(xList,x,x,x-10,x,x-20,x-10,x-15,x-5);
+
     }
 
     @Override
@@ -46,31 +40,6 @@ public class HeartShapedShoot implements ShootStrategy{
             res.add(new EnemyBullet(x, y, 0, bulletSpeedY));
             res.add(new EnemyBullet(x,y , -bulletSpeedX, bulletSpeedY));
         }
-
-
-
-
-//        for(int i=0; i<4; i++){
-//            // 子弹发射位置相对飞机位置向前偏移
-//            // 多个子弹横向分散
-//            //子弹射击方向 (向上发射：1，向下发射：-1)
-//            if (direction==-1){
-//                bullet = new HeroBullet(x, y, bulletSpeedX, bulletSpeedY);
-//                res.add(bullet);
-//                bullet = new HeroBullet(x, y+10, -bulletSpeedX, bulletSpeedY);
-//                res.add(bullet);
-//                res.add(new HeroBullet(x, y+20, -bulletSpeedX, bulletSpeedY));
-//                res.add(new HeroBullet(x+10, y+10, bulletSpeedX, bulletSpeedY));
-//                res.add(new HeroBullet(x+20, y+20, bulletSpeedX, bulletSpeedY));
-//                res.add(new HeroBullet(x+10, y+30, bulletSpeedX, bulletSpeedY));
-//            }else {
-////                bullet = new EnemyBullet(x + (i*2 - shootNum + 1)*10, y+ (i*2 - shootNum + 1)*10, bulletSpeedX, bulletSpeedY);
-////                res.add(bullet);
-////                bullet = new HeroBullet(x + (i*2 - shootNum + 1)*10, y- (i*2 - shootNum + 1)*10, -bulletSpeedX, bulletSpeedY);
-////                res.add(bullet);
-//            }
-//            count++;
-//        }
         return res;
     }
 }

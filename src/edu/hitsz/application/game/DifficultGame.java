@@ -5,7 +5,11 @@ import edu.hitsz.aircraft.enemy.factory.EnemyFactory;
 import edu.hitsz.aircraft.enemy.factory.MobEnemyFactory;
 import edu.hitsz.aircraft.enemy.factory.SuperEnemyFactory;
 
-public class DifficultGame extends Game {
+
+/**
+ * @author leng
+ */
+public class DifficultGame extends BaseGame {
 
     public DifficultGame() {
         // 困难模式下 boss敌机出现 每次分数阈值涨幅为 borderToBoss = 500
@@ -13,26 +17,10 @@ public class DifficultGame extends Game {
         // 血量涨幅50
         bossHpAdd=50;
     }
-//    int hpAdd = 50;
-//    /**
-//     * borderToBoss 生成BOSS敌机的阈值的增长幅度
-//     */
-//    protected int borderAddForBoss = 500;
 
     int enemyHpAdd = 0;
     int enemySpeedAdd = 0;
 
-
-//    /**
-//     * 监听 创建Boss敌机对象
-//     * 加血 hpAdd = 50; 分数阈值涨幅
-//     */
-//    @Override
-//    public void creatBossEnemy() {
-////        super.borderAddForBoss= borderAddForBoss;
-////        super.bossHpAdd = hpAdd;
-//        super.creatBossEnemy();
-//    }
 
     @Override
     protected AbstractEnemyAircraft getAbstractEnemyAircraft() {
@@ -48,11 +36,6 @@ public class DifficultGame extends Game {
         return enemy;
     }
 
-//    @Override
-//    public boolean timeCountAndNewCycleJudge() {
-//        controlDifficulty();
-//        return super.timeCountAndNewCycleJudge();
-//    }
 
     @Override
     protected void controlDifficulty() {

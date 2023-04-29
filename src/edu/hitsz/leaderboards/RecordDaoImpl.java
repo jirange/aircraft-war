@@ -22,7 +22,7 @@ public class RecordDaoImpl implements RecordDao {
 
 
     public RecordDaoImpl() {
-        playerRecords = new ArrayList<PlayerRecord>();
+        playerRecords = new ArrayList<>();
 
         this.difficulty=Main.difficulty;
         createFilename();
@@ -30,7 +30,7 @@ public class RecordDaoImpl implements RecordDao {
         readRecords();
     }
     public RecordDaoImpl(int diff) {
-        playerRecords = new ArrayList<PlayerRecord>();
+        playerRecords = new ArrayList<>();
         this.difficulty=diff;
         createFilename();
 
@@ -64,22 +64,6 @@ public class RecordDaoImpl implements RecordDao {
         return playerRecords;
     }
 
-//
-//    public List<PlayerRecord> getAllRecordsByDiff() {
-//
-//        return playerRecords;
-//
-//    }
-//    @Override
-//    public void doDeleteByName(String playerName) {
-//        for (PlayerRecord playerRecord : playerRecords) {
-//            if (playerRecord.getPlayerName().equals(playerName)) {
-//                playerRecords.remove(playerRecord);
-//                saveRecords();
-//                return;
-//            }
-//        }
-//    }
 
     @Override
     public void doDeleteByRanking(int ranking) {
@@ -103,19 +87,17 @@ public class RecordDaoImpl implements RecordDao {
 
     public void updateData(PlayerRecord playerRecord) {
         sortByScore();
-        //todo 打印历史记录排行榜
+        //打印历史记录排行榜
 
         RecordsTable recordsTable = new RecordsTable(Main.difficulty);
         Main.cardPanel.add(recordsTable.getMainPanel());
         Main.cardLayout.next(Main.cardPanel);
 
-        //todo 弹出弹窗 问是否要加入排行榜 问名字
+        //弹出弹窗 问是否要加入排行榜 问名字
         String username = (String) JOptionPane.showInputDialog(null, "请输入名字记录得分:\n", "输入", JOptionPane.PLAIN_MESSAGE, null, null, "username");
         playerRecord.setPlayerName(username);
-        if (username==null){
-            //todo 不添加该条数据
-        }else{
-            //todo 添加该条数据
+        if (username!=null){
+            //添加该条数据
             this.doAdd(playerRecord);
             recordsTable.updateData();
         }
@@ -164,9 +146,7 @@ public class RecordDaoImpl implements RecordDao {
                 System.out.println(newFile);
                 System.out.println(file.exists());
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {

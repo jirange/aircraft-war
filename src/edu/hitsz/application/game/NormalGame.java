@@ -5,7 +5,10 @@ import edu.hitsz.aircraft.enemy.factory.EnemyFactory;
 import edu.hitsz.aircraft.enemy.factory.MobEnemyFactory;
 import edu.hitsz.aircraft.enemy.factory.SuperEnemyFactory;
 
-public class NormalGame extends Game {
+/**
+ * @author leng
+ */
+public class NormalGame extends BaseGame {
 
     public NormalGame() {
         //普通模式下 boss敌机出现 每次分数阈值涨幅为 borderToBoss = 800

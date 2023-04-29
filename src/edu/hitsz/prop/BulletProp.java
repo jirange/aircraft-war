@@ -23,8 +23,7 @@ public class BulletProp extends BaseProp {
 
     @Override
     public void activeProp(HeroAircraft heroAircraft) {
-//        System.out.println("FireSupply active!");
-//让直射线程暂停五秒 散射线程持续五秒后关闭
+        //让直射线程暂停五秒 散射线程持续五秒后关闭
         Runnable scatteringRun = () -> {
             synchronized (BulletProp.class) {
                 heroAircraft.setShootStrategy(new ScatteringShoot());
@@ -38,14 +37,10 @@ public class BulletProp extends BaseProp {
                 heroAircraft.setShootStrategy(new DirectShoot());
             }
         };
-        //new Thread(scatteringRun).start();
-
         ScheduledExecutorService executorService= new ScheduledThreadPoolExecutor(1,
                 new BasicThreadFactory.Builder().namingPattern("bullet-prop-action-%d").daemon(true).build());
 
         executorService.schedule(scatteringRun,40, TimeUnit.MILLISECONDS);
-//        System.out.println("FireSupply end!");
-
     }
 
 }

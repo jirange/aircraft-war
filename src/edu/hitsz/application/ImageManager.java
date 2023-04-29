@@ -93,6 +93,8 @@ public class ImageManager {
                 case 3:
                     BACKGROUND_IMAGE = ImageIO.read(new FileInputStream("src/images/bg5.jpg"));
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + Main.difficulty);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

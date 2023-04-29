@@ -47,7 +47,7 @@ AbstractEnemyAircraft <|-- BossEnemy
 MobEnemyFactory ..> MobEnemy:"«create»"
 SuperEnemyFactory ..> SuperEnemy:"«create»"
 BossEnemyFactory ..> BossEnemy:"«create»"
-Game ..> EnemyFactory
-Game ..> AbstractEnemyAircraft
+BaseGame ..> EnemyFactory
+BaseGame ..> AbstractEnemyAircraft
 
 @enduml

@@ -9,6 +9,8 @@ public interface EnemyFactory {
     /**
      * 创造敌机对象
      * @return AbstractEnemyAircraft
+     * @param speed 敌机纵向速度
+     * @param hp 敌机血量
      */
-    public abstract AbstractEnemyAircraft createEnemy(int speed,int hp);
+    AbstractEnemyAircraft createEnemy(int speed,int hp);
 }

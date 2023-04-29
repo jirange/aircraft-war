@@ -3,12 +3,13 @@ package ui;
 import edu.hitsz.application.Main;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author leng
+ */
 public class StartMenu {
-    //    private static JPanel GImage;
     private JButton startButton;
     private JComboBox leaderboardBox;
     private JPanel mainPanel;

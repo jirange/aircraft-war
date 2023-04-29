@@ -1,9 +1,9 @@
 package edu.hitsz.application;
 
 import edu.hitsz.aircraft.HeroAircraft;
+import edu.hitsz.application.game.BaseGame;
 import edu.hitsz.application.game.DifficultGame;
 import edu.hitsz.application.game.EasyGame;
-import edu.hitsz.application.game.Game;
 import edu.hitsz.application.game.NormalGame;
 import ui.BackgroundJPanel;
 import ui.DifficultyChoice;
@@ -29,10 +29,10 @@ public class Main {
     public static JPanel cardPanel = new JPanel(cardLayout);
 
     public static void start() {
-        Runnable mainGame = () -> {getMain();};
-        mainGameThread = new Thread(mainGame, "mainGame");
-        mainGameThread.start();
-        //getMain();
+//        Runnable mainGame = () -> {getMain();};
+//        mainGameThread = new Thread(mainGame, "mainGame");
+//        mainGameThread.start();
+        getMain();
     }
 
     public static void main(String[] args) {
@@ -50,19 +50,15 @@ public class Main {
         frame.getLayeredPane().add(new BackgroundJPanel("src/images/bg.jpg"));
         frame.add(cardPanel);
 
-/*        difficultyChoice = new DifficultyChoice();
-        cardPanel.add(difficultyChoice.getMainPanel());
-        frame.setVisible(true);*/
         startMenu = new StartMenu();
         cardPanel.add(startMenu.getMainPanel());
-//        cardPanel.add(new BackgroundJPanel("src/images/bg.jpg"));
         frame.setVisible(true);
 
     }
 
 
     private static void getMain() {
-        Game game;
+        BaseGame game;
 
         switch (Main.difficulty) {
             case 1:

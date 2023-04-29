@@ -1,7 +1,7 @@
 package edu.hitsz.application;
 
 import edu.hitsz.aircraft.HeroAircraft;
-import edu.hitsz.application.game.Game;
+import edu.hitsz.application.game.BaseGame;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -13,11 +13,11 @@ import java.awt.event.MouseEvent;
  * @author hitsz
  */
 public class HeroController {
-    private Game game;
+    private BaseGame game;
     private HeroAircraft heroAircraft;
     private MouseAdapter mouseAdapter;
 
-    public HeroController(Game game, HeroAircraft heroAircraft){
+    public HeroController(BaseGame game, HeroAircraft heroAircraft){
         this.game = game;
         this.heroAircraft = heroAircraft;
 

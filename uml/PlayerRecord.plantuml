@@ -1,6 +1,6 @@
 @startuml
 
-/'class Game {
+/'class BaseGame {
   + action(): void
   - paintImageWithPositionRevised(Graphics, List<AbstractFlyingObject>): void
   - paintScoreAndLife(Graphics): void
@@ -14,7 +14,7 @@
   + paint(Graphics): void
   - crashCheckAction(): void
   - shootAction(): void
-  + Game(): 
+  + BaseGame():
 }'/
 class PlayerRecord {
   - playerName: String
@@ -56,8 +56,8 @@ class RecordDaoImpl {
   + printAll(): void
   + RecordDaoImpl(): 
 }
-/'Game           -->  RecordDaoImpl
-Game           -->  PlayerRecord'/
+/'BaseGame           -->  RecordDaoImpl
+BaseGame           -->  PlayerRecord'/
 RecordDaoImpl  *-->  PlayerRecord
 RecordDaoImpl  --^  RecordDao
 @enduml

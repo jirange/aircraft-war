@@ -8,6 +8,6 @@ class HeroAircraft {
     + {static} getInstance():HeroAircraft
 }
 HeroAircraft --> HeroAircraft
-Game --> HeroAircraft
+BaseGame --> HeroAircraft
 
 @enduml

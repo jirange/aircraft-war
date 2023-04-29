@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author hitsz
  */
-public abstract class Game extends JPanel {
+public abstract class BaseGame extends JPanel {
 
     private int backGroundTop = 0;
 
@@ -46,20 +46,12 @@ public abstract class Game extends JPanel {
      */
     private final ScheduledExecutorService executorService;
 
-//    public int getScoreToBoss() {
-//        return scoreToBoss;
-//    }
-
     /**
      * scoreToBoss 生成BOSS敌机的阈值
      */
     private int scoreToBoss = 100;
-    protected int bossHP = 150;
+    protected int bossHp = 150;
     protected int bossHpAdd = 0;
-
-//    public void setBorderAddForBoss(int borderAddForBoss) {
-//        this.borderAddForBoss = borderAddForBoss;
-//    }
 
     protected int borderAddForBoss = 0;
 
@@ -116,7 +108,7 @@ public abstract class Game extends JPanel {
     private boolean gameOverFlag = false;
     private MusicThread musicThread;
 
-    public Game() {
+    public BaseGame() {
         gameOverFlag = false;
         heroAircraft = HeroAircraft.getHeroAircraft();
 
@@ -218,13 +210,13 @@ public abstract class Game extends JPanel {
 
                 executorService.shutdown();
                 gameOverFlag = true;
-                System.out.println("Game Over!");
+                System.out.println("BaseGame Over!");
 
                 //打印游戏记录排行榜
                 RecordDaoImpl recordDao = new RecordDaoImpl();
                 Date date = new Date();
                 PlayerRecord userRecord = new PlayerRecord(Main.difficulty, score, date);
-                System.out.println("玩家得分：" + userRecord.toString());
+                System.out.println("玩家得分：" + userRecord);
                 recordDao.updateData(userRecord);
 
             }
@@ -239,6 +231,11 @@ public abstract class Game extends JPanel {
 
     }
 
+    /**
+     * 生成普通敌机
+     * 简单模式 难度不变 普通和困难模式 难度要变
+     * @return 敌机对象
+     */
     protected abstract AbstractEnemyAircraft getAbstractEnemyAircraft() ;
 
 
@@ -272,14 +269,14 @@ public abstract class Game extends JPanel {
          */
     public void creatBossEnemy(){
 //        int hpAdd=0;
-        synchronized (Game.class) {
+        synchronized (this) {
             EnemyFactory factory;
             // 分数达到设定阈值后出现BOSS敌机，可多次出现
             if (score >= scoreToBoss) {
                 if (bossEnemy == null || bossEnemy.notValid()) {
                     factory = new BossEnemyFactory();
-                    bossEnemy = factory.createEnemy(5,bossHP);
-                    bossHP+=bossHpAdd;
+                    bossEnemy = factory.createEnemy(5, bossHp);
+                    bossHp +=bossHpAdd;
                     System.out.println("boss敌机血量为" + bossEnemy.getHp());
                     //设置为散射弹道
                     bossEnemy.setShootStrategy(new ScatteringShoot());
@@ -450,7 +447,7 @@ public abstract class Game extends JPanel {
      * 重写paint方法
      * 通过重复调用paint方法，实现游戏动画
      *
-     * @param g
+     * @param g 画
      */
     @Override
     public void paint(Graphics g) {
@@ -505,11 +502,4 @@ public abstract class Game extends JPanel {
         g.drawString("LIFE:" + this.heroAircraft.getHp(), x, y);
     }
 
-    public boolean isGameOverFlag() {
-        return gameOverFlag;
-    }
-
-    public int getTime() {
-        return time;
-    }
 }
