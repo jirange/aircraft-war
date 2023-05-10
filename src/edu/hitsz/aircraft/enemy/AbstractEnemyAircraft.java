@@ -1,6 +1,7 @@
 package edu.hitsz.aircraft.enemy;
 
 import edu.hitsz.aircraft.AbstractAircraft;
+import edu.hitsz.observer.Subscriber;
 import edu.hitsz.prop.BaseProp;
 
 import java.util.List;
@@ -8,13 +9,13 @@ import java.util.List;
 /**
  * @author leng
  */
-public abstract class AbstractEnemyAircraft extends AbstractAircraft {
+public abstract class AbstractEnemyAircraft extends AbstractAircraft implements Subscriber {
 
 
     /**
      * 飞机坠毁后加的分数值
      */
-    private int crashScore;
+    protected int crashScore=30;
     public int getCrashScore() {
         return crashScore;
     }

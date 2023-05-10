@@ -24,8 +24,6 @@ public class BloodProp extends BaseProp{
     public void activeProp(HeroAircraft heroAircraft) {
 
         heroAircraft.increaseHp(BloodProp.increase_blood);
-//        System.out.println("BloodSupply active!");
-
     }
 
 }

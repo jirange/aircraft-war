@@ -2,7 +2,7 @@
 'https://plantuml.com/sequence-diagram
 
 class PlayerRecord {
-    - {static} {final} serialVersionUID: long
+    - {static}serialVersionUID: long
     - playerName: String
     - difficulty: int
     - recordTime: Date

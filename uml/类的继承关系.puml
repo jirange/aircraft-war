@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+abstract class AbstractFlyingObject
+abstract class AbstractAircraft
+abstract class AbstractEnemyAircraft
+abstract class BaseBullet
+abstract class BaseProp
+
+
+AbstractAircraft <|-- HeroAircraft
+AbstractEnemyAircraft <|-- MobEnemy
+AbstractEnemyAircraft <|-- SuperEnemy
+AbstractEnemyAircraft <|-- BossEnemy
+AbstractAircraft <|-- AbstractEnemyAircraft
+
+BaseBullet <|-- HeroBullet
+BaseBullet <|-- EnemyBullet
+
+
+BaseProp <|-- BloodProp
+BaseProp <|-- BombProp
+BaseProp <|-- BulletProp
+
+AbstractFlyingObject <|-- AbstractAircraft
+AbstractFlyingObject <|-- BaseBullet
+AbstractFlyingObject <|-- BaseProp
+
+@enduml

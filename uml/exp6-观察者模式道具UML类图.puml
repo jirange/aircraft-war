@@ -4,7 +4,8 @@
 class BombProp {
 '发布者 publisher
     - subscribers:List<Subscriber>
-    + setSubscribers(List<Subscriber> subscribers):void
+    + addSubscribers(List<Subscriber> subscribers):void
+    + removeSubscribers(List<Subscriber> subscribers):void
     + notifyAllSubscriber(): void
     + activeProp(HeroAircraft):void
 }
@@ -13,12 +14,31 @@ interface Subscriber{
     + {abstract}update():void
 }
 
+
 BombProp o--> Subscriber
 BaseGame --> BombProp
-BaseGame ..> AbstractFlyingObject
-Subscriber <|-- AbstractFlyingObject
+BaseGame ..> BaseBullet
+BaseGame ..> AbstractEnemyAircraft
 
-class AbstractFlyingObject {  /'订阅者'/
+Subscriber <|-- BaseBullet
+Subscriber <|-- AbstractEnemyAircraft
+
+abstract class AbstractEnemyAircraft {  /'订阅者'/
+    + update():void
+}
+class SuperEnemy {  /'订阅者'/
+    + update():void
+}
+class MobEnemy {  /'订阅者'/
+    + update():void
+}
+class BossEnemy {  /'订阅者'/
+    + update():void
+}
+AbstractEnemyAircraft <|-- SuperEnemy
+AbstractEnemyAircraft <|-- MobEnemy
+AbstractEnemyAircraft <|-- BossEnemy
+abstract class BaseBullet {  /'订阅者'/
     + update():void
 }
 @enduml

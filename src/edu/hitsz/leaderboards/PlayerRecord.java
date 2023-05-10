@@ -6,7 +6,6 @@ import edu.hitsz.application.Main;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -41,48 +40,11 @@ public class PlayerRecord implements Serializable {
      */
     private Date recordTime;
 
-
-//    public PlayerRecord() {
-//    }
-//
-//    public PlayerRecord(int difficulty, int ranking, String playerName, int score, Date recordTime) {
-//        this.difficulty = difficulty;
-//        this.ranking = ranking;
-//        this.playerName = playerName;
-//        this.score = score;
-//        this.recordTime = recordTime;
-//    }
-//
-//    public PlayerRecord(int difficulty,String playerName, int score, Date recordTime) {
-//        this.difficulty = difficulty;
-//        this.playerName = playerName;
-//        this.score = score;
-//        this.recordTime = recordTime;
-//    }
-
     public PlayerRecord(int difficulty,int score, Date recordTime) {
         this.difficulty = difficulty;
         this.score = score;
         this.recordTime = recordTime;
     }
-
-//    /**
-//     * 获取
-//     * @return difficulty
-//     */
-//    public int getDifficulty() {
-//        return difficulty;
-//    }
-
-
-
-//    /**
-//     * 设置
-//     * @param difficulty
-//     */
-//    public void setDifficulty(int difficulty) {
-//        this.difficulty = difficulty;
-//    }
 
     /**
      * 获取
@@ -94,7 +56,7 @@ public class PlayerRecord implements Serializable {
 
     /**
      * 设置
-     * @param ranking
+     * @param ranking 排名
      */
     public void setRanking(int ranking) {
         this.ranking = ranking;
@@ -110,7 +72,7 @@ public class PlayerRecord implements Serializable {
 
     /**
      * 设置
-     * @param playerName
+     * @param playerName 玩家名
      */
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
@@ -124,14 +86,6 @@ public class PlayerRecord implements Serializable {
         return score;
     }
 
-//    /**
-//     * 设置
-//     * @param score
-//     */
-//    public void setScore(int score) {
-//        this.score = score;
-//    }
-
     /**
      * 获取
      * @return recordTime
@@ -139,14 +93,6 @@ public class PlayerRecord implements Serializable {
     public Date getRecordTime() {
         return recordTime;
     }
-
-//    /**
-//     * 设置
-//     * @param recordTime
-//     */
-//    public void setRecordTime(Date recordTime) {
-//        this.recordTime = recordTime;
-//    }
 
 
     public String toString() {

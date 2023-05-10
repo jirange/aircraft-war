@@ -3,7 +3,6 @@ package edu.hitsz.basic;
 import edu.hitsz.aircraft.AbstractAircraft;
 import edu.hitsz.application.ImageManager;
 import edu.hitsz.application.Main;
-import edu.hitsz.observer.Subscriber;
 
 import java.awt.image.BufferedImage;
 
@@ -12,9 +11,8 @@ import java.awt.image.BufferedImage;
  *
  * @author hitsz
  */
-public abstract class AbstractFlyingObject implements Subscriber {
+public abstract class AbstractFlyingObject {
 
-    //locationX、locationY为图片中心位置坐标
     /**
      * x 轴坐标
      */

@@ -45,7 +45,6 @@ public class ImageManager {
 
     static {
         try {
-//            updateBackground();
             HERO_IMAGE = ImageIO.read(new FileInputStream("src/images/hero.png"));
             MOB_ENEMY_IMAGE = ImageIO.read(new FileInputStream("src/images/mob.png"));
 

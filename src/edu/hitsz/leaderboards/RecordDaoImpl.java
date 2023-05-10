@@ -79,11 +79,6 @@ public class RecordDaoImpl implements RecordDao {
 
     }
 
-    @Override
-    public void printAll() {
-        sortByScore();
-    }
-
 
     public void updateData(PlayerRecord playerRecord) {
         sortByScore();
@@ -158,8 +153,5 @@ public class RecordDaoImpl implements RecordDao {
             }
         }
     }
-
-
-
 
 }

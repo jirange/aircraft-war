@@ -18,22 +18,11 @@ public interface RecordDao {
      */
     List<PlayerRecord> getAllRecords();
 
-//    /**
-//     * 按照玩家姓名删除玩家记录
-//     * @param playerName 玩家姓名
-//     */
-//    void doDeleteByName(String playerName);
-
     /**
      * 按照玩家排名删除玩家数据
      * @param ranking 玩家排名
      */
     void doDeleteByRanking(int ranking);
-
-    /**
-     * 打印所有记录数据
-     */
-    void printAll();
 
 
 }

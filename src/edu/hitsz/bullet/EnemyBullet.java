@@ -1,13 +1,12 @@
 package edu.hitsz.bullet;
 
+import edu.hitsz.observer.Subscriber;
+
 /**
- * @Author hitsz
+ * @author hitsz
  */
-public class EnemyBullet extends BaseBullet {
+public class EnemyBullet extends BaseBullet implements Subscriber {
     private int power = 30;
-    public EnemyBullet(int locationX, int locationY, int speedX, int speedY, int power) {
-        super(locationX, locationY, speedX, speedY, power);
-    }
 
     public EnemyBullet(int locationX, int locationY, int speedX, int speedY) {
         super(locationX, locationY, speedX, speedY);

@@ -9,12 +9,10 @@ import edu.hitsz.aircraft.enemy.factory.SuperEnemyFactory;
  * @author leng
  */
 public class NormalGame extends BaseGame {
-
     public NormalGame() {
         //普通模式下 boss敌机出现 每次分数阈值涨幅为 borderToBoss = 800
         borderAddForBoss=800;
     }
-
 
     private int enemyHpAdd = 0;
     private int enemySpeedAdd = 0;

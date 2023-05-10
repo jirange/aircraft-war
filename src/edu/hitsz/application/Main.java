@@ -5,7 +5,6 @@ import edu.hitsz.application.game.BaseGame;
 import edu.hitsz.application.game.DifficultGame;
 import edu.hitsz.application.game.EasyGame;
 import edu.hitsz.application.game.NormalGame;
-import ui.BackgroundJPanel;
 import ui.DifficultyChoice;
 import ui.StartMenu;
 
@@ -22,21 +21,16 @@ public class Main {
     public static final int WINDOW_WIDTH = 512;
     public static final int WINDOW_HEIGHT = 768;
     public static int difficulty = 0;
-    public static Thread mainGameThread;
     public static DifficultyChoice difficultyChoice;
     public static StartMenu startMenu;
     public static CardLayout cardLayout = new CardLayout(0, 0);
     public static JPanel cardPanel = new JPanel(cardLayout);
 
     public static void start() {
-//        Runnable mainGame = () -> {getMain();};
-//        mainGameThread = new Thread(mainGame, "mainGame");
-//        mainGameThread.start();
         getMain();
     }
 
     public static void main(String[] args) {
-
         new Main();
         System.out.println("Hello Aircraft War");
         // 获得屏幕的分辨率，初始化 Frame
@@ -47,19 +41,16 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(((int) screenSize.getWidth() - WINDOW_WIDTH) / 2, 0,
                 WINDOW_WIDTH, WINDOW_HEIGHT);
-        frame.getLayeredPane().add(new BackgroundJPanel("src/images/bg.jpg"));
         frame.add(cardPanel);
 
         startMenu = new StartMenu();
         cardPanel.add(startMenu.getMainPanel());
         frame.setVisible(true);
-
     }
 
 
     private static void getMain() {
         BaseGame game;
-
         switch (Main.difficulty) {
             case 1:
                 game = new EasyGame();
@@ -101,8 +92,6 @@ public class Main {
             default:
                 throw new IllegalStateException("Unexpected value: " + difficulty);
         }
-
     }
-
 
 }

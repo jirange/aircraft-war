@@ -18,9 +18,15 @@ public class BombProp extends BaseProp {
         super(locationX, locationY, propSpeed);
     }
 
-    public void setSubscribers(List<Subscriber> subscribers) {
-        this.subscribers = subscribers;
+
+    /**
+     * 添加订阅者
+     * @param subscribers 待添加的订阅者清单
+     */
+    public void addSubscribers(List<? extends Subscriber> subscribers) {
+        this.subscribers.addAll(subscribers);
     }
+
 
     /**
      * 观察者列表

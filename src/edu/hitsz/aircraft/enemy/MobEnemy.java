@@ -14,12 +14,10 @@ import java.util.List;
  * @author hitsz
  */
 public class MobEnemy extends AbstractEnemyAircraft {
-    /**
-     * 飞机坠毁后加的分数值
-     */
-    private int crashScore = 10;
+
     public MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp) {
         super(locationX, locationY, speedX, speedY, hp);
+        this.crashScore=10;
     }
 
     @Override
@@ -36,14 +34,9 @@ public class MobEnemy extends AbstractEnemyAircraft {
         return new LinkedList<>();
     }
 
-
     @Override
     public List<BaseProp> dropProp() {
         return new LinkedList<>();
-    }
-
-    public int getCrashScore() {
-        return crashScore;
     }
 
     /**

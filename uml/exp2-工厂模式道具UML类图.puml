@@ -4,22 +4,26 @@
 abstract class BaseProp {
 '道具类
     + BaseProp(int locationX, int locationY,int prop_speed)
+    + {abstract} activeProp(HeroAircraft):void
 }
 
 
 class BloodProp {
 '加血道具类
     + BloodProp(int locationX, int locationY,int prop_speed)
+    + activeProp(HeroAircraft):void
 }
 
 class BombProp {
 '炸弹道具类
     + BombProp(int locationX, int locationY,int prop_speed)
+    + activeProp(HeroAircraft):void
 }
 
 class BulletProp {
 '火力道具类
     + BulletProp(int locationX, int locationY,int prop_speed)
+    + activeProp(HeroAircraft):void
 }
 
 BaseProp <|-- BloodProp

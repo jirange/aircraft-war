@@ -1,7 +1,6 @@
 package ui;
 
 import edu.hitsz.application.Main;
-import edu.hitsz.thread.MusicThread;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -41,7 +40,6 @@ public class DifficultyChoice {
     }
 
     public DifficultyChoice() {
-//        isMusicSelected= MusicThread.haveAudio;
         simpleButton.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -69,9 +67,7 @@ public class DifficultyChoice {
                 Main.start();
             }
         });
-        checkAudio.addActionListener(e -> {
-            isMusicSelected ="开".equals(checkAudio.getSelectedItem());
-        });
+        checkAudio.addActionListener(e -> isMusicSelected ="开".equals(checkAudio.getSelectedItem()));
         returnButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed

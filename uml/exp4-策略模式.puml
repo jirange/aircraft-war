@@ -27,8 +27,13 @@ class DirectShoot
     + doShoot(int locationX,int locationY,int speedX,int speedY,int direction,int shootSpeed,int shootNum): List<BaseBullet>
 }
 
+class HeartShapedShoot
+{
+    + doShoot(int locationX,int locationY,int speedX,int speedY,int direction,int shootSpeed,int shootNum): List<BaseBullet>
+}
 ShootStrategy <|.. DirectShoot
 ShootStrategy <|.. ScatteringShoot
+ShootStrategy <|.. HeartShapedShoot
 '实现关系
 
 AbstractAircraft o--> ShootStrategy
